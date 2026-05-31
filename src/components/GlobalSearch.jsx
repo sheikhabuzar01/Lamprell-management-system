@@ -211,7 +211,7 @@ export default function GlobalSearch({ lang, dbData, setActiveTab, setSelectedCa
     }
   };
 
-  const isRTL = lang === 'ur';
+  const isRTL = lang === 'ar';
   let flatIndex = -1;
 
   return (

@@ -198,7 +198,7 @@ export default function NotificationCenter({ lang, dbData, setActiveTab, setSele
     setIsOpen(false);
   };
 
-  const isRTL = lang === 'ur';
+  const isRTL = lang === 'ar';
 
   const renderItem = (item, urgency) => {
     const isUnread = !readIds.has(item.id);

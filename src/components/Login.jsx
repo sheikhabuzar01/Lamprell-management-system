@@ -15,7 +15,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
     setError('');
 
     if (email === 'admin@lamprellmc.com' && password === 'password123') {
-      onLogin({ email, name: 'Attorney Counsel', role: lang === 'ur' ? 'منیجنگ پارٹنر' : 'Managing Partner' });
+      onLogin({ email, name: 'Attorney Counsel', role: lang === 'ar' ? 'الشريك الإداري' : 'Managing Partner' });
     } else {
       setError(t.invalidCreds);
     }
@@ -56,7 +56,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
             position: 'absolute',
             top: '1.25rem',
             right: lang === 'en' ? '1.25rem' : 'auto',
-            left: lang === 'ur' ? '1.25rem' : 'auto',
+            left: lang === 'ar' ? '1.25rem' : 'auto',
             background: 'none',
             border: 'none',
             color: 'var(--text-secondary)',
@@ -73,7 +73,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
           }}
         >
           <Languages size={13} />
-          {lang === 'en' ? 'اردو' : 'English'}
+          {lang === 'en' ? 'العربية' : 'English'}
         </button>
         
         {/* Brand Logo */}
@@ -124,7 +124,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
               <Mail size={16} style={{ 
                 position: 'absolute', 
                 left: lang === 'en' ? '0.75rem' : 'auto', 
-                right: lang === 'ur' ? '0.75rem' : 'auto',
+                right: lang === 'ar' ? '0.75rem' : 'auto',
                 color: 'var(--text-muted)' 
               }} />
               <input 
@@ -134,7 +134,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
                 className="form-control"
                 style={{ 
                   paddingLeft: lang === 'en' ? '2.25rem' : '0.75rem',
-                  paddingRight: lang === 'ur' ? '2.25rem' : '0.75rem'
+                  paddingRight: lang === 'ar' ? '2.25rem' : '0.75rem'
                 }}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -148,7 +148,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
               <Lock size={16} style={{ 
                 position: 'absolute', 
                 left: lang === 'en' ? '0.75rem' : 'auto', 
-                right: lang === 'ur' ? '0.75rem' : 'auto',
+                right: lang === 'ar' ? '0.75rem' : 'auto',
                 color: 'var(--text-muted)' 
               }} />
               <input 
@@ -158,7 +158,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
                 className="form-control"
                 style={{ 
                   paddingLeft: lang === 'en' ? '2.25rem' : '0.75rem',
-                  paddingRight: lang === 'ur' ? '2.25rem' : '0.75rem'
+                  paddingRight: lang === 'ar' ? '2.25rem' : '0.75rem'
                 }}
                 value={password}
                 onChange={e => setPassword(e.target.value)}
@@ -169,7 +169,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
                 style={{
                   position: 'absolute',
                   right: lang === 'en' ? '0.75rem' : 'auto',
-                  left: lang === 'ur' ? '0.75rem' : 'auto',
+                  left: lang === 'ar' ? '0.75rem' : 'auto',
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',

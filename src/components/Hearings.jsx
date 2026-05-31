@@ -61,12 +61,12 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
   const [currentYear, setCurrentYear] = useState(2026);
   const [currentMonth, setCurrentMonth] = useState(4); // 0-indexed: May is 4
 
-  const monthNames = lang === 'ur' 
-    ? ["جنوری", "فروری", "مارچ", "اپریل", "مئی", "جون", "جولائی", "اگست", "ستمبر", "اکتوبر", "نومبر", "دسمبر"]
+  const monthNames = lang === 'ar' 
+    ? ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
     : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  const weekdays = lang === 'ur'
-    ? ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"]
+  const weekdays = lang === 'ar'
+    ? ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
     : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   // Helper for generating calendar grid for the chosen month
@@ -143,7 +143,7 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
   };
 
   const handleDeleteHearing = (id) => {
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس سماعت کو مستقل طور پر منسوخ کرنا چاہتے ہیں؟" : "Are you sure you want to delete this docket entry?")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف هذه الجلسة نهائيًا؟" : "Are you sure you want to delete this docket entry?")) {
       db.deleteHearing(id);
       refreshDb();
     }
@@ -183,7 +183,7 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
   const sortedHearings = [...hearings].sort((a, b) => new Date(a.hearingDate) - new Date(b.hearingDate));
 
   return (
-    <div className="hearings-grid" style={{ direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
+    <div className="hearings-grid" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
       
       {/* Left Column: Visual Calendar grid */}
       <div className="dashboard-panel" style={{ height: '100%', overflowY: 'auto' }}>
@@ -191,9 +191,9 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <h3 className="panel-title" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
               <Calendar size={18} />
-              {lang === 'ur' ? 'عدالتی پیشی اور سماعتوں کا کیلنڈر' : 'Litigation Docket Calendar'}
+              {lang === 'ar' ? 'تقويم جلسات المحكمة' : 'Litigation Docket Calendar'}
             </h3>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginLeft: lang === 'en' ? '1rem' : '0', marginRight: lang === 'ur' ? '1rem' : '0', border: '1px solid var(--border-color)', borderRadius: '6px', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginLeft: lang === 'en' ? '1rem' : '0', marginRight: lang === 'ar' ? '1rem' : '0', border: '1px solid var(--border-color)', borderRadius: '6px', overflow: 'hidden' }}>
               <button className="btn btn-secondary" style={{ padding: '0.25rem 0.5rem', border: 'none' }} onClick={handlePrevMonth}>
                 <ChevronLeft size={16} />
               </button>
@@ -213,13 +213,13 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
 
         {/* Calendar Grid */}
         <div style={{ flexGrow: 1 }}>
-          <div className="calendar-container" style={{ gridTemplateColumns: 'repeat(7, 1fr)', fontWeight: 'bold', direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
+          <div className="calendar-container" style={{ gridTemplateColumns: 'repeat(7, 1fr)', fontWeight: 'bold', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
             {weekdays.map(day => (
               <div key={day} className="calendar-day-header">{day}</div>
             ))}
           </div>
           
-          <div className="calendar-container" style={{ direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
+          <div className="calendar-container" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
             {calendarDays.map((cell, idx) => {
               const cellHearings = getHearingsForDate(cell.day, cell.month, cell.year);
               const isToday = cell.day === 21 && cell.month === 4 && cell.year === 2026; // Match system date: May 21 2026
@@ -231,10 +231,10 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                   style={{ 
                     opacity: cell.isCurrentMonth ? 1 : 0.4,
                     minHeight: '85px',
-                    textAlign: lang === 'ur' ? 'right' : 'left'
+                    textAlign: lang === 'ar' ? 'right' : 'left'
                   }}
                 >
-                  <span className="calendar-day-num" style={{ right: lang === 'en' ? '6px' : 'auto', left: lang === 'ur' ? '6px' : 'auto' }}>{cell.day}</span>
+                  <span className="calendar-day-num" style={{ right: lang === 'en' ? '6px' : 'auto', left: lang === 'ar' ? '6px' : 'auto' }}>{cell.day}</span>
                   <div className="calendar-events" style={{ marginTop: '1.25rem' }}>
                     {cellHearings.map(ch => (
                       <div 
@@ -255,10 +255,10 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
       </div>
 
       {/* Right Column: Chronological docket agenda list */}
-      <div className="pane-list" style={{ height: '100%', direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
-        <div style={{ padding: '1rem', borderBottom: '1px solid var(--border-color)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+      <div className="pane-list" style={{ height: '100%', direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
+        <div style={{ padding: '1rem', borderBottom: '1px solid var(--border-color)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
           <Clock size={16} style={{ color: 'var(--primary)' }} />
-          {lang === 'ur' ? 'تفصیلی شیڈول فہرست' : 'Chronological Agenda List'}
+          {lang === 'ar' ? 'قائمة الجدول الزمني' : 'Chronological Agenda List'}
         </div>
         
         <div className="pane-scrollable-items" style={{ padding: '0.75rem' }}>
@@ -280,10 +280,10 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                     marginBottom: '0.75rem',
                     backgroundColor: 'var(--bg-secondary)',
                     transition: 'border-color 0.15s',
-                    textAlign: lang === 'ur' ? 'right' : 'left'
+                    textAlign: lang === 'ar' ? 'right' : 'left'
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', gap: '0.5rem' }}>
                     <span
                       style={{ fontWeight: '600', fontSize: '0.85rem', color: 'var(--primary)', cursor: 'pointer' }}
                       onClick={() => handleHearingClick(h.caseId)}
@@ -304,24 +304,24 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: '0.5rem', borderTop: '1px solid var(--border-color)', paddingTop: '0.5rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <Calendar size={12} /> {h.hearingDate} at {h.time}
                     </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <MapPin size={12} /> {h.courtroom || 'N/A'}
                     </span>
                   </div>
 
                   {/* Outcome row */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', marginTop: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', marginTop: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.outcomeLabel}:</span>
                       <span className={`badge ${badgeCls}`} style={{ fontSize: '0.65rem' }}>{getOutcomeLabel(outcome, t)}</span>
                     </span>
                     {!isEditingOutcome && (
                       <button
                         className="btn btn-secondary btn-sm"
-                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}
+                        style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}
                         onClick={() => openOutcomeEditor(h)}
                       >
                         <Edit3 size={11} />
@@ -354,11 +354,11 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                         value={outcomeDraft.notes}
                         onChange={e => setOutcomeDraft({ ...outcomeDraft, notes: e.target.value })}
                       />
-                      <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'flex-end', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                      <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'flex-end', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                         <button type="button" className="btn btn-secondary btn-sm" onClick={cancelOutcomeEditor} style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem' }}>
                           {t.cancel}
                         </button>
-                        <button type="submit" className="btn btn-primary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                        <button type="submit" className="btn btn-primary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                           <Check size={11} /> {t.saveOutcome}
                         </button>
                       </div>
@@ -374,8 +374,8 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
       {/* Add Hearing Modal */}
       {showAddModal && (
         <div className="modal-overlay">
-          <div className="modal-container" style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}>
-            <div className="modal-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+          <div className="modal-container" style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>
+            <div className="modal-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
               <h3 className="modal-title">{t.quickScheduleTitle}</h3>
               <button className="modal-close" onClick={() => setShowAddModal(false)}>
                 <X size={18} />
@@ -408,9 +408,9 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                   />
                 </div>
 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
-                    <label className="form-label">{lang === 'ur' ? 'سماعت کی تاریخ' : 'Hearing Date'}</label>
+                    <label className="form-label">{lang === 'ar' ? 'تاريخ الجلسة' : 'Hearing Date'}</label>
                     <input 
                       type="date" 
                       required 
@@ -432,7 +432,7 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                   </div>
                 </div>
 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
                     <label className="form-label">{t.courtroom}</label>
                     <input 
@@ -450,15 +450,15 @@ export default function Hearings({ lang, dbData, refreshDb, setSelectedCaseId, s
                       value={newHearing.status}
                       onChange={e => setNewHearing({...newHearing, status: e.target.value})}
                     >
-                      <option value="Scheduled">{lang === 'ur' ? 'طے شدہ' : 'Scheduled'}</option>
-                      <option value="Completed">{lang === 'ur' ? 'مکمل شدہ' : 'Completed'}</option>
-                      <option value="Postponed">{lang === 'ur' ? 'ملتوی' : 'Postponed'}</option>
+                      <option value="Scheduled">{lang === 'ar' ? 'مجدولة' : 'Scheduled'}</option>
+                      <option value="Completed">{lang === 'ar' ? 'مكتملة' : 'Completed'}</option>
+                      <option value="Postponed">{lang === 'ar' ? 'مؤجلة' : 'Postponed'}</option>
                     </select>
                   </div>
                 </div>
 
               </div>
-              <div className="modal-footer" style={{ justifyContent: lang === 'ur' ? 'flex-start' : 'flex-end' }}>
+              <div className="modal-footer" style={{ justifyContent: lang === 'ar' ? 'flex-start' : 'flex-end' }}>
                 <button type="button" className="btn btn-secondary" onClick={() => setShowAddModal(false)}>{t.cancel}</button>
                 <button type="submit" className="btn btn-primary">{t.saveHearing}</button>
               </div>

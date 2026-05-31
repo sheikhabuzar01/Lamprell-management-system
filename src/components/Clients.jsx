@@ -61,7 +61,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
   };
 
   const handleDeleteOrg = (id) => {
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس کلائنٹ کمپنی کو حذف کرنا چاہتے ہیں؟ اس سے تمام شاخیں اور مقدمات بھی حذف ہو جائیں گے۔" : "Are you sure you want to delete this company? This will also delete all associated branches, cases, documents, hearings, and tasks.")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف هذه الشركة العميلة؟ سيؤدي ذلك أيضًا إلى حذف جميع الفروع والقضايا والمستندات والجلسات والمهام المرتبطة بها." : "Are you sure you want to delete this company? This will also delete all associated branches, cases, documents, hearings, and tasks.")) {
       db.deleteOrganization(id);
       const remaining = organizations.filter(o => o.id !== id);
       setSelectedOrgId(remaining[0]?.id || null);
@@ -70,17 +70,17 @@ export default function Clients({ lang, dbData, refreshDb }) {
   };
 
   const handleDeleteBranch = (branchId) => {
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس برانچ کو حذف کرنا چاہتے ہیں؟" : "Are you sure you want to delete this branch? All cases under this branch will also be deleted.")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف هذا الفرع؟ سيتم أيضًا حذف جميع القضايا التابعة لهذا الفرع." : "Are you sure you want to delete this branch? All cases under this branch will also be deleted.")) {
       db.deleteBranch(branchId);
       refreshDb();
     }
   };
 
   const getPriorityLabel = (priority) => {
-    if (lang === 'ur') {
-      if (priority === 'High') return 'زیادہ';
-      if (priority === 'Medium') return 'درمیانی';
-      return 'کم';
+    if (lang === 'ar') {
+      if (priority === 'High') return 'عالية';
+      if (priority === 'Medium') return 'متوسطة';
+      return 'منخفضة';
     }
     return priority;
   };
@@ -92,7 +92,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
         <div className="pane-search-bar">
           <input 
             type="text" 
-            placeholder={lang === 'ur' ? 'کلائنٹس تلاش کریں...' : 'Search clients...'} 
+            placeholder={lang === 'ar' ? 'ابحث عن العملاء...' : 'Search clients...'} 
             className="search-input"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -116,13 +116,13 @@ export default function Clients({ lang, dbData, refreshDb }) {
                     setSelectedOrgId(org.id);
                     setMobileView('detail');
                   }}
-                  style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}
+                  style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}
                 >
                   <div className="list-item-title">{org.name}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.25rem' }}>
                     <span className="list-item-subtitle">{org.industry}</span>
                     <span style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--primary)' }}>
-                      {activeCases} {lang === 'ur' ? 'فعال مقدمات' : 'Active Cases'}
+                      {activeCases} {lang === 'ar' ? 'قضايا نشطة' : 'Active Cases'}
                     </span>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
       </div>
 
       {/* Right Pane: Details, Branches, and Litigations */}
-      <div className={`pane-detail ${mobileView === 'list' ? 'hide-on-mobile' : ''}`} style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}>
+      <div className={`pane-detail ${mobileView === 'list' ? 'hide-on-mobile' : ''}`} style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>
         {selectedOrg ? (
           <>
             {/* Mobile Back Button */}
@@ -142,7 +142,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
               onClick={() => setMobileView('list')}
               style={{ display: 'none', alignItems: 'center', gap: '0.25rem', marginBottom: '1rem', width: 'fit-content' }}
             >
-              &larr; {lang === 'ur' ? 'پیچھے' : 'Back'}
+              &larr; {lang === 'ar' ? 'رجوع' : 'Back'}
             </button>
 
             {/* Header info */}
@@ -155,7 +155,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
               </div>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <span className="badge badge-active" style={{ height: 'fit-content' }}>
-                  {lang === 'ur' && selectedOrg.status === 'Active' ? 'فعال' : selectedOrg.status}
+                  {lang === 'ar' && selectedOrg.status === 'Active' ? 'نشط' : selectedOrg.status}
                 </span>
                 <button 
                   className="btn btn-danger btn-sm" 
@@ -171,7 +171,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
             <div className="detail-section">
               <h3 className="detail-section-title">
                 <Building2 size={18} />
-                {lang === 'ur' ? 'کارپوریٹ رجسٹریشن کی تفصیلات' : 'Corporate Registry Details'}
+                {lang === 'ar' ? 'تفاصيل السجل التجاري' : 'Corporate Registry Details'}
               </h3>
               <div className="info-grid">
                 <div className="info-item">
@@ -249,15 +249,15 @@ export default function Clients({ lang, dbData, refreshDb }) {
                         </div>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-secondary)', borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem' }}>
-                          <div>{lang === 'ur' ? 'نمائندہ رابطہ' : 'Contact'}: <strong style={{ color: 'var(--text-primary)' }}>{branch.contactPerson}</strong></div>
-                          <div>{lang === 'ur' ? 'ای میل' : 'Email'}: <strong style={{ color: 'var(--text-primary)' }}>{branch.email}</strong></div>
+                          <div>{lang === 'ar' ? 'جهة الاتصال' : 'Contact'}: <strong style={{ color: 'var(--text-primary)' }}>{branch.contactPerson}</strong></div>
+                          <div>{lang === 'ar' ? 'البريد الإلكتروني' : 'Email'}: <strong style={{ color: 'var(--text-primary)' }}>{branch.email}</strong></div>
                         </div>
 
                         {/* Cases under branch */}
                         {branchCases.length > 0 && (
                           <div style={{ marginTop: '0.75rem' }}>
                             <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.35rem' }}>
-                              {lang === 'ur' ? 'شاخ کے مقدمات' : 'Branch Litigations'} ({branchCases.length})
+                              {lang === 'ar' ? 'قضايا الفرع' : 'Branch Litigations'} ({branchCases.length})
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                               {branchCases.map(bc => (
@@ -280,11 +280,11 @@ export default function Clients({ lang, dbData, refreshDb }) {
             <div className="detail-section">
               <h3 className="detail-section-title">
                 <Scale size={18} />
-                {lang === 'ur' ? 'کلائنٹ کے مقدمات کی فہرست' : 'Global Litigation Directory'}
+                {lang === 'ar' ? 'دليل قضايا العميل' : 'Global Litigation Directory'}
               </h3>
               {orgCases.length === 0 ? (
                 <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', fontSize: '0.9rem' }}>
-                  {lang === 'ur' ? 'اس کلائنٹ کے لیے کوئی فعال مقدمہ درج نہیں ہے۔' : 'No disputes or active lawsuits recorded for this client.'}
+                  {lang === 'ar' ? 'لا توجد نزاعات أو دعاوى نشطة مسجلة لهذا العميل.' : 'No disputes or active lawsuits recorded for this client.'}
                 </p>
               ) : (
                 <div className="custom-table-wrapper">
@@ -311,7 +311,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                               <span className={`badge badge-${c.priority.toLowerCase()}`}>{getPriorityLabel(c.priority)}</span>
                             </td>
                             <td>
-                              <span className={`badge badge-${c.status.toLowerCase()}`}>{lang === 'ur' && c.status === 'Active' ? 'فعال' : c.status}</span>
+                              <span className={`badge badge-${c.status.toLowerCase()}`}>{lang === 'ar' && c.status === 'Active' ? 'نشط' : c.status}</span>
                             </td>
                           </tr>
                         );
@@ -325,7 +325,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-secondary)' }}>
             <Building2 size={48} style={{ strokeWidth: 1.5, marginBottom: '1rem', color: 'var(--text-muted)' }} />
-            <p>{lang === 'ur' ? 'بائیں جانب سے کمپنی منتخب کریں یا نیا کلائنٹ شامل کریں۔' : 'Please select an organization from the list or add a new one.'}</p>
+            <p>{lang === 'ar' ? 'يرجى اختيار شركة من القائمة أو إضافة عميل جديد.' : 'Please select an organization from the list or add a new one.'}</p>
           </div>
         )}
       </div>
@@ -360,7 +360,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                     className="form-control"
                     value={newOrg.industry} 
                     onChange={e => setNewOrg({...newOrg, industry: e.target.value})}
-                    placeholder={lang === 'ur' ? 'مثلاً آئی ٹی یا ٹیکسٹائل' : 'e.g. IT or Textiles'}
+                    placeholder={lang === 'ar' ? 'مثال: تقنية المعلومات أو المنسوجات' : 'e.g. IT or Textiles'}
                   />
                 </div>
                 <div className="form-row">
@@ -382,7 +382,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                       className="form-control"
                       value={newOrg.primaryContact} 
                       onChange={e => setNewOrg({...newOrg, primaryContact: e.target.value})}
-                      placeholder={lang === 'ur' ? 'مثلاً محمد اسلم' : 'e.g. Asif Peer'}
+                      placeholder={lang === 'ar' ? 'مثال: محمد أسلم' : 'e.g. Asif Peer'}
                     />
                   </div>
                 </div>
@@ -439,7 +439,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                     className="form-control"
                     value={newBranch.name} 
                     onChange={e => setNewBranch({...newBranch, name: e.target.value})}
-                    placeholder={lang === 'ur' ? 'مثلاً گلبرگ برانچ' : 'e.g. Gulberg Branch'}
+                    placeholder={lang === 'ar' ? 'مثال: فرع جلبرج' : 'e.g. Gulberg Branch'}
                   />
                 </div>
                 <div className="form-row">
@@ -451,7 +451,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                       className="form-control"
                       value={newBranch.city} 
                       onChange={e => setNewBranch({...newBranch, city: e.target.value})}
-                      placeholder={lang === 'ur' ? 'مثلاً لاہور' : 'e.g. Lahore'}
+                      placeholder={lang === 'ar' ? 'مثال: لاهور' : 'e.g. Lahore'}
                     />
                   </div>
                   <div className="form-group">
@@ -462,7 +462,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                       className="form-control"
                       value={newBranch.contactPerson} 
                       onChange={e => setNewBranch({...newBranch, contactPerson: e.target.value})}
-                      placeholder={lang === 'ur' ? 'مثلاً برانچ مینیجر' : 'e.g. Branch Manager'}
+                      placeholder={lang === 'ar' ? 'مثال: مدير الفرع' : 'e.g. Branch Manager'}
                     />
                   </div>
                 </div>
@@ -485,7 +485,7 @@ export default function Clients({ lang, dbData, refreshDb }) {
                     className="form-control"
                     value={newBranch.address} 
                     onChange={e => setNewBranch({...newBranch, address: e.target.value})}
-                    placeholder={lang === 'ur' ? 'مثلاً مین بلیوارڈ، گلبرگ، لاہور' : 'e.g. Main Boulevard, Gulberg, Lahore'}
+                    placeholder={lang === 'ar' ? 'مثال: الجادة الرئيسية، جلبرج، لاهور' : 'e.g. Main Boulevard, Gulberg, Lahore'}
                   />
                 </div>
               </div>

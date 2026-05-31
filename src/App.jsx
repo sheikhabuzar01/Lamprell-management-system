@@ -50,9 +50,9 @@ export default function App() {
     localStorage.setItem('lamprellmc_theme', theme);
   }, [theme]);
 
-  // Update DOM language & text direction direction (RTL for Urdu)
+  // Update DOM language & text direction direction (RTL for Arabic)
   useEffect(() => {
-    const dir = lang === 'ur' ? 'rtl' : 'ltr';
+    const dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('dir', dir);
     document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('lamprellmc_lang', lang);
@@ -63,7 +63,7 @@ export default function App() {
   };
 
   const toggleLanguage = () => {
-    setLang(prev => prev === 'en' ? 'ur' : 'en');
+    setLang(prev => prev === 'en' ? 'ar' : 'en');
   };
 
   const handleLogin = (userData) => {
@@ -223,7 +223,7 @@ export default function App() {
             >
               <Menu size={20} />
             </button>
-            <div style={{ textAlign: lang === 'ur' ? 'right' : 'left', minWidth: 0, flex: 1 }}>
+            <div style={{ textAlign: lang === 'ar' ? 'right' : 'left', minWidth: 0, flex: 1 }}>
               <h1 className="page-title">{getTabTitle()}</h1>
               <p className="header-subtitle">
                 {t.counselWorkspace}: <strong>{user.name}</strong> ({user.role}) • {t.docketSyncStatus}: <span style={{ color: 'var(--success)' }}>{t.online}</span>
@@ -251,11 +251,11 @@ export default function App() {
             <button 
               className="theme-btn" 
               onClick={toggleLanguage} 
-              title="Change Language / زبان تبدیل کریں"
+              title="Change Language / تغيير اللغة"
               style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.75rem', fontSize: '0.8rem', fontWeight: '600' }}
             >
               <Languages size={15} />
-              <span>{lang === 'en' ? 'اردو' : 'English'}</span>
+              <span>{lang === 'en' ? 'العربية' : 'English'}</span>
             </button>
 
             {/* Theme Toggle */}

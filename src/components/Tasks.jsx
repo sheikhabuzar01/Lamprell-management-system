@@ -92,7 +92,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
   };
 
   const handleDeleteTask = (id) => {
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس کام کو حذف کرنا چاہتے ہیں؟" : "Are you sure you want to delete this task?")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف هذه المهمة؟" : "Are you sure you want to delete this task?")) {
       db.deleteTask(id);
       refreshDb();
     }
@@ -105,14 +105,14 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
 
   const getCaseName = (caseId) => {
     const c = cases.find(c => c.id === caseId);
-    return c ? c.title : (lang === 'ur' ? 'عام کمپنی فائل' : 'General File');
+    return c ? c.title : (lang === 'ar' ? 'ملف الشركة العام' : 'General File');
   };
 
   const getPriorityLabel = (priority) => {
-    if (lang === 'ur') {
-      if (priority === 'High') return 'زیادہ';
-      if (priority === 'Medium') return 'درمیانی';
-      return 'کم';
+    if (lang === 'ar') {
+      if (priority === 'High') return 'عالية';
+      if (priority === 'Medium') return 'متوسطة';
+      return 'منخفضة';
     }
     return priority;
   };
@@ -148,12 +148,12 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
       >
         <div style={{ display: 'flex', flexGrow: 1, gap: '0.75rem', flexWrap: 'wrap', minWidth: 0 }}>
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: '180px' }}>
-            <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ur' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
+            <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ar' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
             <input 
               type="text" 
-              placeholder={lang === 'ur' ? 'ٹاسک، تفویض کردہ وکیل تلاش کریں...' : 'Search action items, assignees...'} 
+              placeholder={lang === 'ar' ? 'ابحث عن بنود الإجراءات والمسؤولين...' : 'Search action items, assignees...'} 
               className="search-input"
-              style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ur' ? '2.25rem' : '1rem' }}
+              style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ar' ? '2.25rem' : '1rem' }}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -165,7 +165,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
             value={filterCase} 
             onChange={e => setFilterCase(e.target.value)}
           >
-            <option value="all">{lang === 'ur' ? 'تمام مقدمات' : 'All Litigations'}</option>
+            <option value="all">{lang === 'ar' ? 'جميع القضايا' : 'All Litigations'}</option>
             {cases.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
           </select>
         </div>
@@ -176,7 +176,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
       </div>
 
       {/* Kanban Board Layout */}
-      <div className="kanban-board" style={{ direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
+      <div className="kanban-board" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
         
         {/* Pending tasks column */}
         <div 
@@ -185,14 +185,14 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
           onDragLeave={handleDragLeave}
           onDrop={(e) => handleDrop(e, 'Pending')}
           style={{ 
-            textAlign: lang === 'ur' ? 'right' : 'left',
+            textAlign: lang === 'ar' ? 'right' : 'left',
             border: dragOverColumn === 'Pending' ? '2px dashed var(--primary)' : '1px solid var(--border-color)',
             backgroundColor: dragOverColumn === 'Pending' ? 'var(--primary-light)' : 'var(--bg-primary)',
             transition: 'all var(--transition-fast)'
           }}
         >
-          <div className="kanban-column-header" style={{ borderBottom: '2px solid var(--warning)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+          <div className="kanban-column-header" style={{ borderBottom: '2px solid var(--warning)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
               <AlertCircle size={18} style={{ color: 'var(--warning)' }} />
               {t.pending} ({pendingTasks.length})
             </span>
@@ -201,7 +201,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minHeight: '300px' }}>
             {pendingTasks.length === 0 ? (
               <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0', fontSize: '0.9rem', fontStyle: 'italic' }}>
-                {lang === 'ur' ? 'کوئی زیر التواء ٹاسک نہیں ہے۔' : 'No active tasks pending.'}
+                {lang === 'ar' ? 'لا توجد مهام نشطة معلّقة.' : 'No active tasks pending.'}
               </p>
             ) : (
               pendingTasks.map((t) => (
@@ -223,8 +223,8 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                     transition: 'all var(--transition-fast)'
                   }}
                 >
-                  <div className="task-card-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                  <div className="task-card-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <input 
                         type="checkbox" 
                         checked={false} 
@@ -237,18 +237,18 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                   </div>
 
                   <div 
-                    style={{ fontSize: '0.75rem', color: 'var(--primary)', cursor: 'pointer', fontWeight: '500', textAlign: lang === 'ur' ? 'right' : 'left' }}
+                    style={{ fontSize: '0.75rem', color: 'var(--primary)', cursor: 'pointer', fontWeight: '500', textAlign: lang === 'ar' ? 'right' : 'left' }}
                     onClick={() => handleCaseClick(t.caseId)}
                   >
                     {getCaseName(t.caseId)}
                   </div>
 
-                  <div className="task-card-footer" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                      <Calendar size={12} /> {lang === 'ur' ? 'آخری تاریخ' : 'Due'}: {t.dueDate}
+                  <div className="task-card-footer" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                      <Calendar size={12} /> {lang === 'ar' ? 'الاستحقاق' : 'Due'}: {t.dueDate}
                     </span>
                     {t.assignedTo && (
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                         <User size={12} /> {t.assignedTo}
                       </span>
                     )}
@@ -273,14 +273,14 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
           onDragLeave={handleDragLeave}
           onDrop={(e) => handleDrop(e, 'Completed')}
           style={{ 
-            textAlign: lang === 'ur' ? 'right' : 'left',
+            textAlign: lang === 'ar' ? 'right' : 'left',
             border: dragOverColumn === 'Completed' ? '2px dashed var(--primary)' : '1px solid var(--border-color)',
             backgroundColor: dragOverColumn === 'Completed' ? 'var(--primary-light)' : 'var(--bg-primary)',
             transition: 'all var(--transition-fast)'
           }}
         >
-          <div className="kanban-column-header" style={{ borderBottom: '2px solid var(--success)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+          <div className="kanban-column-header" style={{ borderBottom: '2px solid var(--success)', paddingBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
               <CheckCircle2 size={18} style={{ color: 'var(--success)' }} />
               {t.completed} ({completedTasks.length})
             </span>
@@ -289,7 +289,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', minHeight: '300px' }}>
             {completedTasks.length === 0 ? (
               <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0', fontSize: '0.9rem', fontStyle: 'italic' }}>
-                {lang === 'ur' ? 'مکمل شدہ کام یہاں نظر آئیں گے۔' : 'Completed items will list here.'}
+                {lang === 'ar' ? 'ستظهر العناصر المكتملة هنا.' : 'Completed items will list here.'}
               </p>
             ) : (
               completedTasks.map((t) => (
@@ -313,8 +313,8 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                   onDragLeave={() => setDragOverTaskId(null)}
                   onDrop={(e) => handleCardDrop(e, t.id)}
                 >
-                  <div className="task-card-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                  <div className="task-card-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <input 
                         type="checkbox" 
                         checked={true} 
@@ -326,14 +326,14 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                   </div>
 
                   <div 
-                    style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer', textAlign: lang === 'ur' ? 'right' : 'left' }}
+                    style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer', textAlign: lang === 'ar' ? 'right' : 'left' }}
                     onClick={() => handleCaseClick(t.caseId)}
                   >
                     {getCaseName(t.caseId)}
                   </div>
 
-                  <div className="task-card-footer" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                    <span>{lang === 'ur' ? 'آخری تاریخ' : 'Due'}: {t.dueDate}</span>
+                  <div className="task-card-footer" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                    <span>{lang === 'ar' ? 'الاستحقاق' : 'Due'}: {t.dueDate}</span>
                     <button 
                       className="btn btn-secondary btn-sm text-danger" 
                       style={{ padding: '0.15rem 0.35rem', border: 'none' }}
@@ -353,9 +353,9 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
       {/* Add Task Modal */}
       {showAddModal && (
         <div className="modal-overlay">
-          <div className="modal-container" style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}>
-            <div className="modal-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-              <h3 className="modal-title">{lang === 'ur' ? 'نیا کام شامل کریں' : 'Create Action Item'}</h3>
+          <div className="modal-container" style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>
+            <div className="modal-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+              <h3 className="modal-title">{lang === 'ar' ? 'إنشاء مغلقة إجراء' : 'Create Action Item'}</h3>
               <button className="modal-close" onClick={() => setShowAddModal(false)}>
                 <X size={18} />
               </button>
@@ -363,7 +363,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
             <form onSubmit={handleAddTask}>
               <div className="modal-body">
                 <div className="form-group">
-                  <label className="form-label">{lang === 'ur' ? 'مقدمہ منتخب کریں' : 'Link to Case File'}</label>
+                  <label className="form-label">{lang === 'ar' ? 'الربط بملف قضية' : 'Link to Case File'}</label>
                   <select 
                     required 
                     className="form-control"
@@ -387,7 +387,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                   />
                 </div>
 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
                     <label className="form-label">{t.dueDateCol}</label>
                     <input 
@@ -405,9 +405,9 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                       value={newTask.priority}
                       onChange={e => setNewTask({...newTask, priority: e.target.value})}
                     >
-                      <option value="High">{lang === 'ur' ? 'زیادہ' : 'High'}</option>
-                      <option value="Medium">{lang === 'ur' ? 'درمیانی' : 'Medium'}</option>
-                      <option value="Low">{lang === 'ur' ? 'کم' : 'Low'}</option>
+                      <option value="High">{lang === 'ar' ? 'عالية' : 'High'}</option>
+                      <option value="Medium">{lang === 'ar' ? 'متوسطة' : 'Medium'}</option>
+                      <option value="Low">{lang === 'ar' ? 'منخفضة' : 'Low'}</option>
                     </select>
                   </div>
                 </div>
@@ -424,7 +424,7 @@ export default function Tasks({ lang, dbData, refreshDb, setSelectedCaseId, setA
                 </div>
 
               </div>
-              <div className="modal-footer" style={{ justifyContent: lang === 'ur' ? 'flex-start' : 'flex-end' }}>
+              <div className="modal-footer" style={{ justifyContent: lang === 'ar' ? 'flex-start' : 'flex-end' }}>
                 <button type="button" className="btn btn-secondary" onClick={() => setShowAddModal(false)}>{t.cancel}</button>
                 <button type="submit" className="btn btn-primary">{t.saveTask}</button>
               </div>

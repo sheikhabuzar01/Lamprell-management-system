@@ -45,10 +45,10 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
 
   // Translate priorities
   const getPriorityLabel = (priority) => {
-    if (lang === 'ur') {
-      if (priority === 'High') return 'زیادہ';
-      if (priority === 'Medium') return 'درمیانی';
-      return 'کم';
+    if (lang === 'ar') {
+      if (priority === 'High') return 'عالية';
+      if (priority === 'Medium') return 'متوسطة';
+      return 'منخفضة';
     }
     return priority;
   };
@@ -111,7 +111,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                 {t.highPriorityMatters}
               </h3>
               <button className="btn btn-secondary btn-sm" onClick={() => setActiveTab('cases')}>
-                {lang === 'ur' ? 'سب دیکھیں' : 'View All'} <ArrowRight size={14} style={{ transform: lang === 'ur' ? 'rotate(180deg)' : 'none' }} />
+                {lang === 'ar' ? 'عرض الكل' : 'View All'} <ArrowRight size={14} style={{ transform: lang === 'ar' ? 'rotate(180deg)' : 'none' }} />
               </button>
             </div>
             
@@ -139,11 +139,11 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                           </td>
                           <td>{org ? org.name : 'Unknown'}</td>
                           <td>
-                            <span className="badge badge-medium">{lang === 'ur' && c.stage === 'Pleading' ? 'درخواست گزار' : lang === 'ur' && c.stage === 'Discovery' ? 'انکشاف' : lang === 'ur' && c.stage === 'Trial' ? 'سماعت' : c.stage}</span>
+                            <span className="badge badge-medium">{lang === 'ar' && c.stage === 'Pleading' ? 'مذكرة دفاع' : lang === 'ar' && c.stage === 'Discovery' ? 'كشف الأدلة' : lang === 'ar' && c.stage === 'Trial' ? 'محاكمة' : c.stage}</span>
                           </td>
                           <td>
                             <button className="btn btn-secondary btn-sm" onClick={() => handleCaseClick(c.id)}>
-                              {lang === 'ur' ? 'انتظام کریں' : 'Manage'}
+                              {lang === 'ar' ? 'إدارة' : 'Manage'}
                             </button>
                           </td>
                         </tr>
@@ -159,7 +159,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
             <div className="panel-header">
               <h3 className="panel-title">
                 <Scale size={18} />
-                {lang === 'ur' ? 'حالیہ قانونی چارہ جوئی کی فہرست' : 'Recent Litigation Index'}
+                {lang === 'ar' ? 'فهرس الدعاوى الأخيرة' : 'Recent Litigation Index'}
               </h3>
             </div>
             <div className="custom-table-wrapper">
@@ -199,7 +199,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                 {t.upcomingAgenda}
               </h3>
               <button className="btn btn-secondary btn-sm" onClick={() => setActiveTab('hearings')}>
-                {lang === 'ur' ? 'مکمل کیلنڈر' : 'Full Calendar'}
+                {lang === 'ar' ? 'التقويم الكامل' : 'Full Calendar'}
               </button>
             </div>
             
@@ -220,7 +220,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                         border: '1px solid var(--border-color)', 
                         borderRadius: 'var(--radius-md)',
                         cursor: 'pointer',
-                        textAlign: lang === 'ur' ? 'right' : 'left'
+                        textAlign: lang === 'ar' ? 'right' : 'left'
                       }}
                     >
                       <div style={{ 
@@ -236,7 +236,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                         border: '1px solid var(--border-color)'
                       }}>
                         <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
-                          {new Date(h.hearingDate).toLocaleDateString(lang === 'ur' ? 'ur-PK' : 'en-US', { month: 'short' })}
+                          {new Date(h.hearingDate).toLocaleDateString(lang === 'ar' ? 'ar' : 'en-US', { month: 'short' })}
                         </span>
                         <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                           {new Date(h.hearingDate).getDate()}
@@ -266,10 +266,10 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
             <div className="panel-header">
               <h3 className="panel-title">
                 <CheckSquare size={18} />
-                {lang === 'ur' ? 'کاموں کے لیے آخری تاریخیں' : 'Action Items Deadlines'}
+                {lang === 'ar' ? 'المواعيد النهائية للمهام' : 'Action Items Deadlines'}
               </h3>
               <button className="btn btn-secondary btn-sm" onClick={() => setActiveTab('tasks')}>
-                {lang === 'ur' ? 'تمام ٹاسک' : 'All Tasks'}
+                {lang === 'ar' ? 'جميع المهام' : 'All Tasks'}
               </button>
             </div>
             
@@ -289,7 +289,7 @@ export default function Dashboard({ lang, dbData, setActiveTab, setSelectedCaseI
                     <span className={`badge badge-${t.priority.toLowerCase()}`}>{getPriorityLabel(t.priority)}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
-                    <span>{lang === 'ur' ? 'آخری تاریخ' : 'Due'}: {t.dueDate}</span>
+                    <span>{lang === 'ar' ? 'الاستحقاق' : 'Due'}: {t.dueDate}</span>
                     <span style={{ fontStyle: 'italic' }}>{getClientName(t.caseId)}</span>
                   </div>
                 </div>

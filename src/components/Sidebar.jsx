@@ -65,8 +65,8 @@ export default function Sidebar({ lang, activeTab, setActiveTab, onLogout, isSid
         <div className="user-profile" style={{ marginBottom: '0.5rem' }}>
           <div className="avatar">A</div>
           <div className="user-info">
-            <span className="user-name">{lang === 'ur' ? 'وکیل صاحب' : 'Attorney Counsel'}</span>
-            <span className="user-role">{lang === 'ur' ? 'منیجنگ پارٹنر' : 'Managing Partner'}</span>
+            <span className="user-name">{lang === 'ar' ? 'المستشار القانوني' : 'Attorney Counsel'}</span>
+            <span className="user-role">{lang === 'ar' ? 'الشريك الإداري' : 'Managing Partner'}</span>
           </div>
         </div>
         <button 

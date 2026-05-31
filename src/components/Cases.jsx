@@ -182,7 +182,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
   const handleDeleteCase = (id, e) => {
     e.stopPropagation();
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس کیس فائل کو حذف کرنا چاہتے ہیں؟" : "Are you sure you want to delete this case? All related hearings, tasks, and files will also be removed.")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف ملف القضية هذا؟ ستُزال أيضًا جميع الجلسات والمهام والملفات ذات الصلة." : "Are you sure you want to delete this case? All related hearings, tasks, and files will also be removed.")) {
       db.deleteCase(id);
       if (selectedCaseId === id) setSelectedCaseId(null);
       refreshDb();
@@ -242,7 +242,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
     try {
       const blob = await db.getFileContent(doc.id);
       if (!blob) {
-        alert(lang === 'ur' ? 'فائل کا مواد نہیں ملا۔' : 'File content not found.');
+        alert(lang === 'ar' ? 'لم يتم العثور على محتوى الملف.' : 'File content not found.');
         return;
       }
       const url = URL.createObjectURL(blob);
@@ -368,22 +368,22 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
   };
 
   const getPriorityLabel = (priority) => {
-    if (lang === 'ur') {
-      if (priority === 'High') return 'زیادہ';
-      if (priority === 'Medium') return 'درمیانی';
-      return 'کم';
+    if (lang === 'ar') {
+      if (priority === 'High') return 'عالية';
+      if (priority === 'Medium') return 'متوسطة';
+      return 'منخفضة';
     }
     return priority;
   };
 
   const getLocalizedCategory = (cat) => {
-    if (lang === 'ur') {
-      if (cat === 'Pleading') return 'درخواست گزار';
-      if (cat === 'Motion') return 'متفرق درخواست';
-      if (cat === 'Evidence') return 'ثبوت';
-      if (cat === 'Contract') return 'معاہدہ';
-      if (cat === 'Correspondence') return 'خط و کتابت';
-      return 'دیگر';
+    if (lang === 'ar') {
+      if (cat === 'Pleading') return 'مذكرة دفاع';
+      if (cat === 'Motion') return 'طلب';
+      if (cat === 'Evidence') return 'دليل';
+      if (cat === 'Contract') return 'عقد';
+      if (cat === 'Correspondence') return 'مراسلات';
+      return 'أخرى';
     }
     return cat;
   };
@@ -408,12 +408,12 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
       >
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', flexGrow: 1, minWidth: 0 }}>
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: '180px' }}>
-            <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ur' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
+            <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ar' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
             <input 
               type="text" 
               placeholder={t.searchCases} 
               className="search-input"
-              style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ur' ? '2.25rem' : '1rem' }}
+              style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ar' ? '2.25rem' : '1rem' }}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -429,18 +429,18 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
             <select className="form-control" style={{ width: 'auto', padding: '0.35rem 1.5rem 0.35rem 0.75rem' }} value={filterStage} onChange={e => setFilterStage(e.target.value)}>
               <option value="all">{t.allStages}</option>
-              <option value="Pleading">{lang === 'ur' ? 'درخواست گزار' : 'Pleading'}</option>
-              <option value="Discovery">{lang === 'ur' ? 'انکشاف' : 'Discovery'}</option>
-              <option value="Trial">{lang === 'ur' ? 'سماعت' : 'Trial'}</option>
-              <option value="Appeal">{lang === 'ur' ? 'اپیل' : 'Appeal'}</option>
-              <option value="Closed">{lang === 'ur' ? 'بند' : 'Closed'}</option>
+              <option value="Pleading">{lang === 'ar' ? 'مذكرة دفاع' : 'Pleading'}</option>
+              <option value="Discovery">{lang === 'ar' ? 'كشف الأدلة' : 'Discovery'}</option>
+              <option value="Trial">{lang === 'ar' ? 'محاكمة' : 'Trial'}</option>
+              <option value="Appeal">{lang === 'ar' ? 'استئناف' : 'Appeal'}</option>
+              <option value="Closed">{lang === 'ar' ? 'مغلقة' : 'Closed'}</option>
             </select>
 
             <select className="form-control" style={{ width: 'auto', padding: '0.35rem 1.5rem 0.35rem 0.75rem' }} value={filterPriority} onChange={e => setFilterPriority(e.target.value)}>
               <option value="all">{t.allPriorities}</option>
-              <option value="High">{lang === 'ur' ? 'زیادہ' : 'High'}</option>
-              <option value="Medium">{lang === 'ur' ? 'درمیانی' : 'Medium'}</option>
-              <option value="Low">{lang === 'ur' ? 'کم' : 'Low'}</option>
+              <option value="High">{lang === 'ar' ? 'عالية' : 'High'}</option>
+              <option value="Medium">{lang === 'ar' ? 'متوسطة' : 'Medium'}</option>
+              <option value="Low">{lang === 'ar' ? 'منخفضة' : 'Low'}</option>
             </select>
           </div>
         </div>
@@ -458,9 +458,9 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
               {t.noCasesFound}
             </p>
           ) : (
-            <table className="custom-table" style={{ direction: lang === 'ur' ? 'rtl' : 'ltr' }}>
+            <table className="custom-table" style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}>
               <thead>
-                <tr style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}>
+                <tr style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>
                   <th>{t.caseTitleCol}</th>
                   <th>{t.clientCol}</th>
                   <th>{t.branchCol}</th>
@@ -488,7 +488,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       <td>{branch ? branch.name.split(' (')[0] : 'HQ'}</td>
                       <td style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{c.court}</td>
                       <td>
-                        <span className="badge badge-medium">{lang === 'ur' && c.stage === 'Pleading' ? 'درخواست گزار' : lang === 'ur' && c.stage === 'Discovery' ? 'انکشاف' : lang === 'ur' && c.stage === 'Trial' ? 'سماعت' : c.stage}</span>
+                        <span className="badge badge-medium">{lang === 'ar' && c.stage === 'Pleading' ? 'مذكرة دفاع' : lang === 'ar' && c.stage === 'Discovery' ? 'كشف الأدلة' : lang === 'ar' && c.stage === 'Trial' ? 'محاكمة' : c.stage}</span>
                       </td>
                       <td>
                         <span className={`badge badge-${c.priority.toLowerCase()}`}>{getPriorityLabel(c.priority)}</span>
@@ -498,7 +498,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                           <button className="btn btn-secondary btn-sm" onClick={() => setSelectedCaseId(c.id)} title={t.viewDetails}>
                             <ExternalLink size={12} />
                           </button>
-                          <button className="btn btn-secondary btn-sm" onClick={() => handleStartEdit(c)} title={lang === 'ur' ? 'ترمیم کریں' : 'Edit Case'}>
+                          <button className="btn btn-secondary btn-sm" onClick={() => handleStartEdit(c)} title={lang === 'ar' ? 'تعديل' : 'Edit Case'}>
                             <Edit3 size={12} />
                           </button>
                           <button className="btn btn-secondary btn-sm text-danger" onClick={(e) => handleDeleteCase(c.id, e)} title={t.deleteCase}>
@@ -518,8 +518,8 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
       {/* Case Details Modal */}
       {selectedCase && (
         <div className="modal-overlay">
-          <div className="modal-container" style={{ maxWidth: '800px', display: 'flex', flexDirection: 'column', textAlign: lang === 'ur' ? 'right' : 'left' }}>
-            <div className="modal-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+          <div className="modal-container" style={{ maxWidth: '800px', display: 'flex', flexDirection: 'column', textAlign: lang === 'ar' ? 'right' : 'left' }}>
+            <div className="modal-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
               <div>
                 <span className="badge badge-low" style={{ marginBottom: '0.25rem' }}>{selectedCase.caseNumber}</span>
                 <h3 className="modal-title" style={{ fontSize: '1.25rem' }}>{selectedCase.title}</h3>
@@ -577,7 +577,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     
                     {/* Case Title */}
                     <div className="form-group">
-                      <label className="form-label">{lang === 'ur' ? 'مقدمہ کا عنوان' : 'Litigation Title'}</label>
+                      <label className="form-label">{lang === 'ar' ? 'عنوان القضية' : 'Litigation Title'}</label>
                       <input 
                         type="text" 
                         className="form-control" 
@@ -588,7 +588,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     </div>
 
                     {/* Client & Branch */}
-                    <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <div className="form-group">
                         <label className="form-label">{t.clientCol}</label>
                         <select 
@@ -620,9 +620,9 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     </div>
 
                     {/* Case Number & Court */}
-                    <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <div className="form-group">
-                        <label className="form-label">{lang === 'ur' ? 'فائل / مقدمہ نمبر' : 'Case / File Number'}</label>
+                        <label className="form-label">{lang === 'ar' ? 'رقم الملف / القضية' : 'Case / File Number'}</label>
                         <input 
                           type="text" 
                           className="form-control" 
@@ -632,7 +632,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                         />
                       </div>
                       <div className="form-group">
-                        <label className="form-label">{lang === 'ur' ? 'عدالت کا نام' : 'Court Jurisdiction'}</label>
+                        <label className="form-label">{lang === 'ar' ? 'الاختصاص القضائي' : 'Court Jurisdiction'}</label>
                         <input 
                           type="text" 
                           className="form-control" 
@@ -644,9 +644,9 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     </div>
 
                     {/* Judge & Priority */}
-                    <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <div className="form-group">
-                        <label className="form-label">{lang === 'ur' ? 'جج کا نام' : 'Presiding Judge'}</label>
+                        <label className="form-label">{lang === 'ar' ? 'القاضي المترئّس' : 'Presiding Judge'}</label>
                         <input 
                           type="text" 
                           className="form-control" 
@@ -655,22 +655,22 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                         />
                       </div>
                       <div className="form-group">
-                        <label className="form-label">{lang === 'ur' ? 'اہمیت / ترجیح' : 'Priority Level'}</label>
+                        <label className="form-label">{lang === 'ar' ? 'مستوى الأولوية' : 'Priority Level'}</label>
                         <select 
                           className="form-control" 
                           value={editCaseForm.priority} 
                           onChange={e => setEditCaseForm({ ...editCaseForm, priority: e.target.value })}
                         >
-                          <option value="High">{lang === 'ur' ? 'زیادہ (High)' : 'High'}</option>
-                          <option value="Medium">{lang === 'ur' ? 'درمیانی (Medium)' : 'Medium'}</option>
-                          <option value="Low">{lang === 'ur' ? 'کم (Low)' : 'Low'}</option>
+                          <option value="High">{lang === 'ar' ? 'عالية (High)' : 'High'}</option>
+                          <option value="Medium">{lang === 'ar' ? 'متوسطة (Medium)' : 'Medium'}</option>
+                          <option value="Low">{lang === 'ar' ? 'منخفضة (Low)' : 'Low'}</option>
                         </select>
                       </div>
                     </div>
 
                     {/* Brief Description */}
                     <div className="form-group">
-                      <label className="form-label">{lang === 'ur' ? 'مقدمہ کی تفصیل' : 'Brief Description'}</label>
+                      <label className="form-label">{lang === 'ar' ? 'وصف موجز' : 'Brief Description'}</label>
                       <textarea 
                         className="form-control" 
                         rows={3} 
@@ -680,12 +680,12 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     </div>
 
                     {/* Save / Cancel buttons */}
-                    <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <button type="button" className="btn btn-secondary" onClick={() => setIsEditing(false)}>
-                        {lang === 'ur' ? 'منسوخ کریں' : 'Cancel'}
+                        {lang === 'ar' ? 'إلغاء' : 'Cancel'}
                       </button>
                       <button type="submit" className="btn btn-primary">
-                        {lang === 'ur' ? 'تبدیلیاں محفوظ کریں' : 'Save Changes'}
+                        {lang === 'ar' ? 'حفظ التغييرات' : 'Save Changes'}
                       </button>
                     </div>
 
@@ -705,7 +705,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       </div>
                       <div className="info-item">
                         <span className="info-label">{t.branchCol}</span>
-                        <span className="info-value" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', justifyContent: lang === 'ur' ? 'flex-end' : 'initial', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                        <span className="info-value" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', justifyContent: lang === 'ar' ? 'flex-end' : 'initial', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                           <MapPin size={12} style={{ color: 'var(--text-muted)' }} />
                           {caseBranch ? caseBranch.name : 'HQ'}
                         </span>
@@ -720,7 +720,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       </div>
                     </div>
 
-                    <div className="form-row" style={{ marginTop: '0.5rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div className="form-row" style={{ marginTop: '0.5rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <div className="form-group">
                         <label className="form-label" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>{t.litPhaseLabel}</label>
                         <select 
@@ -728,11 +728,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                           value={selectedCase.stage} 
                           onChange={e => handleStageChange(selectedCase.id, e.target.value)}
                         >
-                          <option value="Pleading">{lang === 'ur' ? 'درخواست گزار' : 'Pleading'}</option>
-                          <option value="Discovery">{lang === 'ur' ? 'انکشاف' : 'Discovery'}</option>
-                          <option value="Trial">{lang === 'ur' ? 'سماعت' : 'Trial'}</option>
-                          <option value="Appeal">{lang === 'ur' ? 'اپیل' : 'Appeal'}</option>
-                          <option value="Closed">{lang === 'ur' ? 'بند' : 'Closed'}</option>
+                          <option value="Pleading">{lang === 'ar' ? 'مذكرة دفاع' : 'Pleading'}</option>
+                          <option value="Discovery">{lang === 'ar' ? 'كشف الأدلة' : 'Discovery'}</option>
+                          <option value="Trial">{lang === 'ar' ? 'محاكمة' : 'Trial'}</option>
+                          <option value="Appeal">{lang === 'ar' ? 'استئناف' : 'Appeal'}</option>
+                          <option value="Closed">{lang === 'ar' ? 'مغلقة' : 'Closed'}</option>
                         </select>
                       </div>
 
@@ -743,15 +743,15 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                           value={selectedCase.status} 
                           onChange={e => handleStatusChange(selectedCase.id, e.target.value)}
                         >
-                          <option value="Active">{lang === 'ur' ? 'فعال' : 'Active'}</option>
-                          <option value="Pending">{lang === 'ur' ? 'زیر التواء' : 'Pending'}</option>
-                          <option value="Closed">{lang === 'ur' ? 'بند' : 'Closed'}</option>
+                          <option value="Active">{lang === 'ar' ? 'نشط' : 'Active'}</option>
+                          <option value="Pending">{lang === 'ar' ? 'معلّقة' : 'Pending'}</option>
+                          <option value="Closed">{lang === 'ar' ? 'مغلقة' : 'Closed'}</option>
                         </select>
                       </div>
                     </div>
 
                     {/* Edit Details Trigger Button */}
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                       <button 
                         className="btn btn-primary" 
                         onClick={() => {
@@ -767,10 +767,10 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                           });
                           setIsEditing(true);
                         }}
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}
+                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}
                       >
                         <Edit3 size={14} />
-                        {lang === 'ur' ? 'مقدمہ میں ترمیم کریں' : 'Edit Case Details'}
+                        {lang === 'ar' ? 'تعديل تفاصيل القضية' : 'Edit Case Details'}
                       </button>
                     </div>
 
@@ -783,11 +783,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   
                   {/* Quick Add Hearing */}
-                  <form onSubmit={handleAddQuickHearing} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                  <form onSubmit={handleAddQuickHearing} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                     <div style={{ flex: 1, minWidth: '150px' }}>
                       <input 
                         type="text" 
-                        placeholder={lang === 'ur' ? 'سماعت کا مقصد (مثلاً ٹرائل)' : 'Hearing purpose (e.g. Trial)'} 
+                        placeholder={lang === 'ar' ? 'الغرض من الجلسة (مثال: محاكمة)' : 'Hearing purpose (e.g. Trial)'} 
                         className="form-control" 
                         style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                         required
@@ -818,7 +818,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     <div style={{ flex: '1 1 120px', minWidth: 0 }}>
                       <input
                         type="text"
-                        placeholder={lang === 'ur' ? 'کمرہ نمبر' : 'Rm 301'}
+                        placeholder={lang === 'ar' ? 'رقم القاعة' : 'Rm 301'}
                         className="form-control"
                         style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                         value={quickHearing.courtroom}
@@ -833,7 +833,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                   {/* Hearings List */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     {caseHearings.length === 0 ? (
-                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ur' ? 'کوئی سماعت طے نہیں ہے۔' : 'No hearings scheduled.'}</p>
+                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ar' ? 'لا توجد جلسات مجدولة.' : 'No hearings scheduled.'}</p>
                     ) : (
                       caseHearings.map(h => {
                         const isEditingOutcome = outcomeEditId === h.id;
@@ -841,11 +841,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                         const badgeCls = OUTCOME_BADGE_CLASS[outcome] || 'badge-active';
                         return (
                           <div key={h.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: '0.75rem 1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                              <div style={{ minWidth: 0, flex: 1, textAlign: lang === 'ur' ? 'right' : 'left' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                              <div style={{ minWidth: 0, flex: 1, textAlign: lang === 'ar' ? 'right' : 'left' }}>
                                 <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>{h.purpose}</span>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', gap: '0.5rem', marginTop: '0.15rem', flexWrap: 'wrap', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}><Clock size={12} /> {h.hearingDate} at {h.time || 'TBD'}</span>
+                                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', gap: '0.5rem', marginTop: '0.15rem', flexWrap: 'wrap', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}><Clock size={12} /> {h.hearingDate} at {h.time || 'TBD'}</span>
                                   <span>•</span>
                                   <span>{h.courtroom || 'No courtroom assigned'}</span>
                                 </div>
@@ -854,16 +854,16 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                             </div>
 
                             {h.notes && !isEditingOutcome && (
-                              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', backgroundColor: 'var(--bg-primary)', padding: '0.5rem 0.65rem', borderRadius: 'var(--radius-sm)', borderInlineStart: '2px solid var(--primary)', textAlign: lang === 'ur' ? 'right' : 'left' }}>
+                              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', backgroundColor: 'var(--bg-primary)', padding: '0.5rem 0.65rem', borderRadius: 'var(--radius-sm)', borderInlineStart: '2px solid var(--primary)', textAlign: lang === 'ar' ? 'right' : 'left' }}>
                                 {h.notes}
                               </div>
                             )}
 
                             {!isEditingOutcome ? (
-                              <div style={{ display: 'flex', justifyContent: 'flex-end', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                              <div style={{ display: 'flex', justifyContent: 'flex-end', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                                 <button
                                   className="btn btn-secondary btn-sm"
-                                  style={{ padding: '0.2rem 0.55rem', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}
+                                  style={{ padding: '0.2rem 0.55rem', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}
                                   onClick={() => openOutcomeEditor(h)}
                                 >
                                   <Edit3 size={11} /> {t.updateOutcome}
@@ -887,11 +887,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                                   value={outcomeDraft.notes}
                                   onChange={e => setOutcomeDraft({ ...outcomeDraft, notes: e.target.value })}
                                 />
-                                <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'flex-end', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                                <div style={{ display: 'flex', gap: '0.4rem', justifyContent: 'flex-end', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                                   <button type="button" className="btn btn-secondary btn-sm" onClick={cancelOutcomeEditor} style={{ padding: '0.25rem 0.55rem', fontSize: '0.72rem' }}>
                                     {t.cancel}
                                   </button>
-                                  <button type="submit" className="btn btn-primary btn-sm" style={{ padding: '0.25rem 0.55rem', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                                  <button type="submit" className="btn btn-primary btn-sm" style={{ padding: '0.25rem 0.55rem', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                                     <Check size={11} /> {t.saveOutcome}
                                   </button>
                                 </div>
@@ -910,7 +910,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   
                   {/* Quick Add Doc */}
-                  <form onSubmit={handleAddQuickDoc} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', alignItems: 'center' }}>
+                  <form onSubmit={handleAddQuickDoc} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', alignItems: 'center' }}>
                     <div style={{ flex: 1, minWidth: '150px' }}>
                       <input 
                         type="file" 
@@ -923,7 +923,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     <div style={{ flex: 1, minWidth: '150px' }}>
                       <input 
                         type="text" 
-                        placeholder={lang === 'ur' ? 'فائل کا نام...' : 'File name...'}
+                        placeholder={lang === 'ar' ? 'اسم الملف...' : 'File name...'}
                         className="form-control" 
                         style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                         required
@@ -957,25 +957,25 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       />
                     </div>
                     <button type="submit" className="btn btn-primary btn-sm">
-                      {lang === 'ur' ? 'اپ لوڈ' : 'Upload'}
+                      {lang === 'ar' ? 'رفع' : 'Upload'}
                     </button>
                   </form>
 
                   {/* Documents List */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {caseDocs.length === 0 ? (
-                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ur' ? 'کیس فائل میں کوئی دستاویزات نہیں ہیں۔' : 'No documents stored.'}</p>
+                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ar' ? 'لا توجد مستندات مخزّنة.' : 'No documents stored.'}</p>
                     ) : (
                       caseDocs.map(d => (
-                        <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                        <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                             <FileText size={16} style={{ color: 'var(--primary)' }} />
                             <div>
                               <div style={{ fontWeight: '500' }}>{d.name}</div>
                               <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{d.uploadDate} • {d.size}</div>
                             </div>
                           </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                             <span className="badge badge-low" style={{ fontSize: '0.65rem' }}>{getLocalizedCategory(d.category)}</span>
                             <button 
                               className="btn btn-secondary btn-sm" 
@@ -989,7 +989,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                               className="btn btn-secondary btn-sm text-danger" 
                               style={{ padding: '0.15rem 0.35rem', border: 'none' }}
                               onClick={() => {
-                                if (window.confirm(lang === 'ur' ? "حذف کریں؟" : "Are you sure you want to delete this document?")) {
+                                if (window.confirm(lang === 'ar' ? "هل تريد حذف هذا المستند؟" : "Are you sure you want to delete this document?")) {
                                   db.deleteDocument(d.id);
                                   refreshDb();
                                 }
@@ -1010,11 +1010,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   
                   {/* Quick Add Task */}
-                  <form onSubmit={handleAddQuickTask} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                  <form onSubmit={handleAddQuickTask} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                     <div style={{ flex: 1, minWidth: '150px' }}>
                       <input 
                         type="text" 
-                        placeholder={lang === 'ur' ? 'کام کی تفصیل (مثلاً فائل بریف)' : 'Action Item (e.g. File brief)'} 
+                        placeholder={lang === 'ar' ? 'مغلقة الإجراء (مثال: تقديم مذكرة)' : 'Action Item (e.g. File brief)'} 
                         className="form-control" 
                         style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                         required
@@ -1035,7 +1035,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     <div style={{ flex: '1 1 130px', minWidth: 0 }}>
                       <input
                         type="text"
-                        placeholder={lang === 'ur' ? 'تفویض کردہ' : 'Assign To'}
+                        placeholder={lang === 'ar' ? 'إسناد إلى' : 'Assign To'}
                         className="form-control"
                         style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
                         value={quickTask.assignedTo}
@@ -1050,7 +1050,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                   {/* Task list */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {caseTasks.length === 0 ? (
-                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ur' ? 'کوئی کام درج نہیں ہے۔' : 'No tasks registered.'}</p>
+                      <p style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '2rem 0' }}>{lang === 'ar' ? 'لا توجد مهام مسجلة.' : 'No tasks registered.'}</p>
                     ) : (
                       caseTasks.map(t => (
                         <div 
@@ -1064,17 +1064,17 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                             borderRadius: 'var(--radius-md)',
                             backgroundColor: t.status === 'Completed' ? 'rgba(0,0,0,0.01)' : 'var(--bg-secondary)',
                             opacity: t.status === 'Completed' ? 0.6 : 1,
-                            flexDirection: lang === 'ur' ? 'row-reverse' : 'row'
+                            flexDirection: lang === 'ar' ? 'row-reverse' : 'row'
                           }}
                         >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                             <input 
                               type="checkbox" 
                               checked={t.status === 'Completed'} 
                               onChange={() => handleToggleTask(t.id, t.status)}
                               style={{ width: '16px', height: '16px', cursor: 'pointer' }}
                             />
-                            <div style={{ textAlign: lang === 'ur' ? 'right' : 'left' }}>
+                            <div style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>
                               <span style={{ 
                                 fontSize: '0.875rem', 
                                 fontWeight: '500',
@@ -1082,7 +1082,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                               }}>
                                 {t.title}
                               </span>
-                              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'flex', gap: '0.5rem', marginTop: '0.15rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'flex', gap: '0.5rem', marginTop: '0.15rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                                 <span>Due: {t.dueDate}</span>
                                 {t.assignedTo && <span>• Assignee: {t.assignedTo}</span>}
                               </div>
@@ -1111,7 +1111,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       value={noteDraft.body}
                       onChange={e => setNoteDraft({ ...noteDraft, body: e.target.value })}
                     />
-                    <div style={{ display: 'flex', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
                       <input
                         type="text"
                         className="form-control"
@@ -1120,7 +1120,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                         value={noteDraft.author}
                         onChange={e => setNoteDraft({ ...noteDraft, author: e.target.value })}
                       />
-                      <button type="submit" className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                      <button type="submit" className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                         <Plus size={13} /> {t.addNoteBtn}
                       </button>
                     </div>
@@ -1139,12 +1139,12 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                             border: '1px solid var(--border-color)',
                             borderRadius: 'var(--radius-md)',
                             backgroundColor: 'var(--bg-secondary)',
-                            textAlign: lang === 'ur' ? 'right' : 'left'
+                            textAlign: lang === 'ar' ? 'right' : 'left'
                           }}
                         >
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.4rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                              <span>{new Date(n.createdAt).toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.4rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                              <span>{new Date(n.createdAt).toLocaleString(lang === 'ar' ? 'ar' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
                               {n.author && <span>• {n.author}</span>}
                             </div>
                             <button
@@ -1232,7 +1232,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       />
                     </div>
                     <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                      <button type="submit" className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                      <button type="submit" className="btn btn-primary btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                         <Plus size={13} /> {t.saveTimeEntry}
                       </button>
                     </div>
@@ -1240,9 +1240,9 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
                   {/* Totals strip */}
                   {caseTimeEntries.length > 0 && (
-                    <div style={{ display: 'flex', gap: '1rem', padding: '0.5rem 0.85rem', backgroundColor: 'var(--primary-light)', borderRadius: 'var(--radius-md)', fontSize: '0.82rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: '1rem', padding: '0.5rem 0.85rem', backgroundColor: 'var(--primary-light)', borderRadius: 'var(--radius-md)', fontSize: '0.82rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
                       <span><strong>{t.totalHours}:</strong> {caseTimeTotal.hours.toFixed(2)}</span>
-                      <span><strong>{t.totalAmount}:</strong> {caseTimeTotal.amount.toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US')}</span>
+                      <span><strong>{t.totalAmount}:</strong> {caseTimeTotal.amount.toLocaleString(lang === 'ar' ? 'ar' : 'en-US')}</span>
                     </div>
                   )}
 
@@ -1265,10 +1265,10 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                               display: 'flex',
                               flexDirection: 'column',
                               gap: '0.3rem',
-                              textAlign: lang === 'ur' ? 'right' : 'left'
+                              textAlign: lang === 'ar' ? 'right' : 'left'
                             }}
                           >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', flexWrap: 'wrap' }}>
                               <div style={{ minWidth: 0, flex: 1 }}>
                                 <div style={{ fontSize: '0.85rem', fontWeight: 600 }}>{te.description || '—'}</div>
                                 <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
@@ -1276,10 +1276,10 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                                   {te.invoiceId && ` · ${t.invoiceStatusSent}`}
                                 </div>
                               </div>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
-                                <div style={{ fontSize: '0.82rem', fontWeight: 600, textAlign: lang === 'ur' ? 'left' : 'right' }}>
-                                  {te.hours}h × {Number(te.rate).toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US')}
-                                  <div style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>{amount.toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US')} {te.currency || 'PKR'}</div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
+                                <div style={{ fontSize: '0.82rem', fontWeight: 600, textAlign: lang === 'ar' ? 'left' : 'right' }}>
+                                  {te.hours}h × {Number(te.rate).toLocaleString(lang === 'ar' ? 'ar' : 'en-US')}
+                                  <div style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>{amount.toLocaleString(lang === 'ar' ? 'ar' : 'en-US')} {te.currency || 'PKR'}</div>
                                 </div>
                                 {!te.invoiceId && (
                                   <button
@@ -1302,11 +1302,11 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
             </div>
 
-            <div className="modal-footer" style={{ justifyContent: 'space-between', flexDirection: lang === 'ur' ? 'row-reverse' : 'row', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div className="modal-footer" style={{ justifyContent: 'space-between', flexDirection: lang === 'ar' ? 'row-reverse' : 'row', flexWrap: 'wrap', gap: '0.5rem' }}>
               <button
                 className="btn btn-secondary"
                 onClick={handlePrintCase}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}
               >
                 <Printer size={15} /> {t.printCaseBtn}
               </button>
@@ -1319,8 +1319,8 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
       {/* Add Case Modal */}
       {showAddModal && (
         <div className="modal-overlay">
-          <div className="modal-container" style={{ maxWidth: '650px', textAlign: lang === 'ur' ? 'right' : 'left' }}>
-            <div className="modal-header" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+          <div className="modal-container" style={{ maxWidth: '650px', textAlign: lang === 'ar' ? 'right' : 'left' }}>
+            <div className="modal-header" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
               <h3 className="modal-title">{t.openNewCaseTitle}</h3>
               <button className="modal-close" onClick={() => setShowAddModal(false)}>
                 <X size={18} />
@@ -1329,7 +1329,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
             <form onSubmit={handleAddCase}>
               <div className="modal-body">
                 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
                     <label className="form-label">{t.clientCol}</label>
                     <select 
@@ -1358,7 +1358,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                   </div>
                 </div>
 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
                     <label className="form-label">{t.caseNumberLabel}</label>
                     <input 
@@ -1377,9 +1377,9 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       value={newCase.priority}
                       onChange={e => setNewCase({...newCase, priority: e.target.value})}
                     >
-                      <option value="High">{lang === 'ur' ? 'زیادہ' : 'High'}</option>
-                      <option value="Medium">{lang === 'ur' ? 'درمیانی' : 'Medium'}</option>
-                      <option value="Low">{lang === 'ur' ? 'کم' : 'Low'}</option>
+                      <option value="High">{lang === 'ar' ? 'عالية' : 'High'}</option>
+                      <option value="Medium">{lang === 'ar' ? 'متوسطة' : 'Medium'}</option>
+                      <option value="Low">{lang === 'ar' ? 'منخفضة' : 'Low'}</option>
                     </select>
                   </div>
                 </div>
@@ -1392,7 +1392,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                     className="form-control"
                     value={newCase.title}
                     onChange={e => setNewCase({...newCase, title: e.target.value})}
-                    placeholder={lang === 'ur' ? 'مثلاً سسٹمز لمیٹڈ بنام پنجاب آئی ٹی بورڈ' : 'e.g. Systems Limited v. PITB (Tender Dispute)'}
+                    placeholder={lang === 'ar' ? 'مثال: سيستمز المحدودة ضد هيئة تقنية المعلومات' : 'e.g. Systems Limited v. PITB (Tender Dispute)'}
                   />
                 </div>
 
@@ -1406,7 +1406,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                   />
                 </div>
 
-                <div className="form-row" style={{ flexDirection: lang === 'ur' ? 'row-reverse' : 'row' }}>
+                <div className="form-row" style={{ flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                   <div className="form-group">
                     <label className="form-label">{t.courtJurisdictLabel}</label>
                     <input 
@@ -1414,7 +1414,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       className="form-control"
                       value={newCase.court}
                       onChange={e => setNewCase({...newCase, court: e.target.value})}
-                      placeholder={lang === 'ur' ? 'مثلاً لاہور ہائی کورٹ' : 'e.g. Lahore High Court'}
+                      placeholder={lang === 'ar' ? 'مثال: محكمة لاهور العليا' : 'e.g. Lahore High Court'}
                     />
                   </div>
                   <div className="form-group">
@@ -1424,13 +1424,13 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                       className="form-control"
                       value={newCase.judge}
                       onChange={e => setNewCase({...newCase, judge: e.target.value})}
-                      placeholder={lang === 'ur' ? 'مثلاً مسٹر جسٹس شاہد کریم' : 'e.g. Mr. Justice Shahid Karim'}
+                      placeholder={lang === 'ar' ? 'مثال: القاضي شاهد كريم' : 'e.g. Mr. Justice Shahid Karim'}
                     />
                   </div>
                 </div>
 
               </div>
-              <div className="modal-footer" style={{ justifyContent: lang === 'ur' ? 'flex-start' : 'flex-end' }}>
+              <div className="modal-footer" style={{ justifyContent: lang === 'ar' ? 'flex-start' : 'flex-end' }}>
                 <button type="button" className="btn btn-secondary" onClick={() => setShowAddModal(false)}>{t.cancel}</button>
                 <button type="submit" className="btn btn-primary">{t.initializeCaseBtn}</button>
               </div>
@@ -1441,18 +1441,18 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
       {/* Print-only report (hidden on screen, full report when printing) */}
       {selectedCase && (
-        <div className="case-print-report" aria-hidden="true" dir={lang === 'ur' ? 'rtl' : 'ltr'}>
+        <div className="case-print-report" aria-hidden="true" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
           <div className="print-header">
             <h1>{t.caseReportTitle}</h1>
             <div className="print-meta">
-              <span>{t.generatedOn}: {new Date().toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+              <span>{t.generatedOn}: {new Date().toLocaleString(lang === 'ar' ? 'ar' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
             </div>
           </div>
 
           <section className="print-section">
             <h2>{selectedCase.title}</h2>
             <div className="print-kv-grid">
-              <div><strong>{lang === 'ur' ? 'فائل / مقدمہ نمبر' : 'Case / File Number'}:</strong> {selectedCase.caseNumber}</div>
+              <div><strong>{lang === 'ar' ? 'رقم الملف / القضية' : 'Case / File Number'}:</strong> {selectedCase.caseNumber}</div>
               <div><strong>{t.clientCol}:</strong> {caseOrg ? caseOrg.name : '—'}</div>
               <div><strong>{t.branchCol}:</strong> {caseBranch ? caseBranch.name : '—'}</div>
               <div><strong>{t.courtLabel}:</strong> {selectedCase.court || '—'}</div>
@@ -1472,7 +1472,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
               <table className="print-table">
                 <thead>
                   <tr>
-                    <th>{lang === 'ur' ? 'تاریخ' : 'Date'}</th>
+                    <th>{lang === 'ar' ? 'التاريخ' : 'Date'}</th>
                     <th>{t.time}</th>
                     <th>{t.purpose}</th>
                     <th>{t.courtroom}</th>
@@ -1502,7 +1502,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
               <table className="print-table">
                 <thead>
                   <tr>
-                    <th>{lang === 'ur' ? 'کام' : 'Task'}</th>
+                    <th>{lang === 'ar' ? 'مهمة' : 'Task'}</th>
                     <th>{t.dueDateCol}</th>
                     <th>{t.priorityLabel}</th>
                     <th>{t.statusLabel}</th>
@@ -1557,7 +1557,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                 {caseNotes.map(n => (
                   <div key={n.id} className="print-note">
                     <div className="print-note-meta">
-                      <span>{new Date(n.createdAt).toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                      <span>{new Date(n.createdAt).toLocaleString(lang === 'ar' ? 'ar' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
                       {n.author && <span> · {n.author}</span>}
                     </div>
                     <div className="print-note-body">{n.body}</div>

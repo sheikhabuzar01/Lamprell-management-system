@@ -19,7 +19,7 @@ import { translations } from '../db/translations';
 const INVOICE_STATUSES = ['Draft', 'Sent', 'Paid'];
 
 function fmt(amount, lang) {
-  return Number(amount || 0).toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US', {
+  return Number(amount || 0).toLocaleString(lang === 'ar' ? 'ar' : 'en-US', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
   });
@@ -143,7 +143,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
     return c ? orgLookup(c.orgId) : null;
   };
 
-  const isRTL = lang === 'ur';
+  const isRTL = lang === 'ar';
 
   const toggleSelect = (id) => {
     setSelectedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
@@ -322,7 +322,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
                 value={timeDraft.caseId}
                 onChange={e => setTimeDraft(d => ({ ...d, caseId: e.target.value }))}
               >
-                <option value="">{lang === 'ur' ? '-- مقدمہ منتخب کریں --' : '-- Select Case --'}</option>
+                <option value="">{lang === 'ar' ? '-- اختر قضية --' : '-- Select Case --'}</option>
                 {cases.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
               </select>
             </div>
@@ -564,7 +564,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
             <Filter size={14} style={{ color: 'var(--text-secondary)' }} />
             <label style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{t.invoiceStatus}:</label>
             <select className="form-control" style={{ width: 'auto', padding: '0.35rem 0.65rem', fontSize: '0.82rem' }} value={filterInvoiceStatus} onChange={e => setFilterInvoiceStatus(e.target.value)}>
-              <option value="all">{lang === 'ur' ? 'تمام' : 'All'}</option>
+              <option value="all">{lang === 'ar' ? 'الكل' : 'All'}</option>
               {INVOICE_STATUSES.map(s => <option key={s} value={s}>{getInvoiceStatusLabel(s, t)}</option>)}
             </select>
           </div>
@@ -828,7 +828,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
                       </button>
                     )}
                     <button className="btn btn-secondary btn-sm text-danger" onClick={() => handleDeleteInvoice(inv.id)} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', flexDirection: isRTL ? 'row-reverse' : 'row' }}>
-                      <Trash2 size={12} /> {t.cancel === 'منسوخ کریں' ? 'حذف' : 'Delete'}
+                      <Trash2 size={12} /> {t.cancel === 'إلغاء' ? 'حذف' : 'Delete'}
                     </button>
                   </div>
                   <button className="btn btn-primary" onClick={handlePrintInvoice} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexDirection: isRTL ? 'row-reverse' : 'row' }}>
@@ -843,7 +843,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
               <div className="print-header">
                 <h1>{t.invoicePreviewTitle} {inv.invoiceNumber}</h1>
                 <div className="print-meta">
-                  <span>{t.generatedOn}: {new Date().toLocaleString(lang === 'ur' ? 'ur-PK' : 'en-US', { dateStyle: 'medium' })}</span>
+                  <span>{t.generatedOn}: {new Date().toLocaleString(lang === 'ar' ? 'ar' : 'en-US', { dateStyle: 'medium' })}</span>
                 </div>
               </div>
 

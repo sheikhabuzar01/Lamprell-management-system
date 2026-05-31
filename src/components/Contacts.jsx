@@ -46,7 +46,7 @@ export default function Contacts({ lang, dbData }) {
     0
   );
 
-  const isRTL = lang === 'ur';
+  const isRTL = lang === 'ar';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', direction: isRTL ? 'rtl' : 'ltr' }}>

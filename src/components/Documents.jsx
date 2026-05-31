@@ -90,7 +90,7 @@ export default function Documents({ lang, dbData, refreshDb }) {
     try {
       const blob = await db.getFileContent(doc.id);
       if (!blob) {
-        alert(lang === 'ur' ? 'فائل کا مواد نہیں ملا۔' : 'File content not found.');
+        alert(lang === 'ar' ? 'لم يتم العثور على محتوى الملف.' : 'File content not found.');
         return;
       }
       const url = URL.createObjectURL(blob);
@@ -108,26 +108,26 @@ export default function Documents({ lang, dbData, refreshDb }) {
   };
 
   const handleDeleteDoc = (id) => {
-    if (window.confirm(lang === 'ur' ? "کیا آپ اس دستاویز کو والٹ سے مستقل طور پر حذف کرنا چاہتے ہیں؟" : "Are you sure you want to permanently delete this document from the vault?")) {
+    if (window.confirm(lang === 'ar' ? "هل تريد حذف هذا المستند نهائيًا من الخزانة؟" : "Are you sure you want to permanently delete this document from the vault?")) {
       db.deleteDocument(id);
       refreshDb();
     }
   };
 
   const getCaseName = (caseId) => {
-    if (!caseId) return lang === 'ur' ? 'عام کمپنی فائلیں' : 'General Company Files';
+    if (!caseId) return lang === 'ar' ? 'ملفات الشركة العامة' : 'General Company Files';
     const c = cases.find(c => c.id === caseId);
     return c ? c.title : 'Unknown Case';
   };
 
   const getLocalizedCategory = (cat) => {
-    if (lang === 'ur') {
-      if (cat === 'Pleading') return 'درخواست گزار فائل';
-      if (cat === 'Motion') return 'متفرق درخواست';
-      if (cat === 'Evidence') return 'ثبوت / شہادت';
-      if (cat === 'Contract') return 'معاہدہ';
-      if (cat === 'Correspondence') return 'خط و کتابت';
-      return 'دیگر';
+    if (lang === 'ar') {
+      if (cat === 'Pleading') return 'مذكرة دفاع';
+      if (cat === 'Motion') return 'طلب';
+      if (cat === 'Evidence') return 'دليل / إثبات';
+      if (cat === 'Contract') return 'عقد';
+      if (cat === 'Correspondence') return 'مراسلات';
+      return 'أخرى';
     }
     return cat;
   };
@@ -157,7 +157,7 @@ export default function Documents({ lang, dbData, refreshDb }) {
               <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 <span className="list-item-title">{org.name}</span>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
-                  {documents.filter(d => d.orgId === org.id || cases.filter(c => c.orgId === org.id).map(c => c.id).includes(d.caseId)).length} {lang === 'ur' ? 'فائلیں' : 'Files'}
+                  {documents.filter(d => d.orgId === org.id || cases.filter(c => c.orgId === org.id).map(c => c.id).includes(d.caseId)).length} {lang === 'ar' ? 'ملفات' : 'Files'}
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function Documents({ lang, dbData, refreshDb }) {
               onClick={() => setMobileView('list')}
               style={{ display: 'none', alignItems: 'center', gap: '0.25rem', marginBottom: '1rem', width: 'fit-content' }}
             >
-              &larr; {lang === 'ur' ? 'پیچھے' : 'Back'}
+              &larr; {lang === 'ar' ? 'رجوع' : 'Back'}
             </button>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
@@ -184,7 +184,7 @@ export default function Documents({ lang, dbData, refreshDb }) {
                   <Building2 size={12} /> {t.documentsTitle}
                 </span>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.5rem', marginTop: '0.25rem' }}>
-                  {selectedOrg.name} {lang === 'ur' ? 'کی فائلیں' : 'Files'}
+                  {selectedOrg.name} {lang === 'ar' ? 'ملفات' : 'Files'}
                 </h2>
               </div>
               <button className="btn btn-primary" onClick={() => setShowUploadModal(true)}>
@@ -194,12 +194,12 @@ export default function Documents({ lang, dbData, refreshDb }) {
 
             {/* Document search bar */}
             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-              <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ur' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
+              <Search size={16} style={{ position: 'absolute', left: lang === 'en' ? '0.75rem' : 'auto', right: lang === 'ar' ? '0.75rem' : 'auto', color: 'var(--text-secondary)' }} />
               <input 
                 type="text" 
-                placeholder={lang === 'ur' ? 'فائل کا نام یا زمرہ تلاش کریں...' : 'Search file name, classification...'} 
+                placeholder={lang === 'ar' ? 'ابحث باسم الملف أو التصنيف...' : 'Search file name, classification...'} 
                 className="search-input"
-                style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ur' ? '2.25rem' : '1rem' }}
+                style={{ paddingLeft: lang === 'en' ? '2.25rem' : '1rem', paddingRight: lang === 'ar' ? '2.25rem' : '1rem' }}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -275,7 +275,7 @@ export default function Documents({ lang, dbData, refreshDb }) {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-secondary)' }}>
             <Folder size={48} style={{ strokeWidth: 1.5, marginBottom: '1rem', color: 'var(--text-muted)' }} />
-            <p>{lang === 'ur' ? 'دستاویزات کا جائزہ لینے کے لیے بائیں جانب سے کلائنٹ فولڈر منتخب کریں۔' : 'Please select a Client Folder on the left to review uploaded documents.'}</p>
+            <p>{lang === 'ar' ? 'يرجى اختيار مجلد عميل من اليمين لمراجعة المستندات المرفوعة.' : 'Please select a Client Folder on the left to review uploaded documents.'}</p>
           </div>
         )}
       </div>
