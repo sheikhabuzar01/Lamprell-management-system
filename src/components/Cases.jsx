@@ -102,7 +102,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
 
   // Time entry draft (for Time Log tab)
   const todayIso = new Date().toISOString().split('T')[0];
-  const defaultRate = parseFloat(localStorage.getItem('lexsuite_default_rate') || '0') || 0;
+  const defaultRate = parseFloat(localStorage.getItem('lamprellmc_default_rate') || '0') || 0;
   const [timeDraft, setTimeDraft] = useState({
     date: todayIso,
     hours: '',
@@ -308,7 +308,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
       attorneyName: timeDraft.attorneyName.trim()
     });
     if (timeDraft.rate && Number(timeDraft.rate) > 0) {
-      localStorage.setItem('lexsuite_default_rate', String(Number(timeDraft.rate)));
+      localStorage.setItem('lamprellmc_default_rate', String(Number(timeDraft.rate)));
     }
     setTimeDraft({
       date: todayIso,

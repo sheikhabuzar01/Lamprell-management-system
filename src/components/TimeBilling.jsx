@@ -62,7 +62,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
 
   // Default rate
   const [defaultRate, setDefaultRate] = useState(() => {
-    const stored = parseFloat(localStorage.getItem('lexsuite_default_rate') || '0');
+    const stored = parseFloat(localStorage.getItem('lamprellmc_default_rate') || '0');
     return stored > 0 ? stored : 0;
   });
 
@@ -72,7 +72,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
     caseId: cases[0]?.id || '',
     date: todayIso,
     hours: '',
-    rate: parseFloat(localStorage.getItem('lexsuite_default_rate') || '0') || 0,
+    rate: parseFloat(localStorage.getItem('lamprellmc_default_rate') || '0') || 0,
     description: '',
     attorneyName: ''
   });
@@ -88,7 +88,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
       description: timeDraft.description.trim(),
       attorneyName: timeDraft.attorneyName.trim()
     });
-    if (timeDraft.rate > 0) localStorage.setItem('lexsuite_default_rate', String(timeDraft.rate));
+    if (timeDraft.rate > 0) localStorage.setItem('lamprellmc_default_rate', String(timeDraft.rate));
     setTimeDraft(d => ({ ...d, hours: '', description: '', date: new Date().toISOString().split('T')[0] }));
     refreshDb();
   };
@@ -157,7 +157,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
   const clearSelection = () => setSelectedIds([]);
 
   const saveDefaultRate = () => {
-    if (defaultRate > 0) localStorage.setItem('lexsuite_default_rate', String(defaultRate));
+    if (defaultRate > 0) localStorage.setItem('lamprellmc_default_rate', String(defaultRate));
   };
 
   const openInvoiceCreate = () => {

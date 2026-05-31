@@ -14,7 +14,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
     e.preventDefault();
     setError('');
 
-    if (email === 'admin@lexsuite.com' && password === 'password123') {
+    if (email === 'admin@lamprellmc.com' && password === 'password123') {
       onLogin({ email, name: 'Attorney Counsel', role: lang === 'ur' ? 'منیجنگ پارٹنر' : 'Managing Partner' });
     } else {
       setError(t.invalidCreds);
@@ -130,7 +130,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
               <input 
                 type="email" 
                 required 
-                placeholder="admin@lexsuite.com"
+                placeholder="admin@lamprellmc.com"
                 className="form-control"
                 style={{ 
                   paddingLeft: lang === 'en' ? '2.25rem' : '0.75rem',
@@ -199,7 +199,7 @@ export default function Login({ lang, onLogin, toggleLanguage }) {
           color: 'var(--text-secondary)'
         }}>
           <div style={{ fontWeight: 'bold', color: 'var(--primary)', marginBottom: '0.25rem' }}>{t.demoCreds}:</div>
-          <div>{t.emailLabel}: <strong style={{ color: 'var(--text-primary)' }}>admin@lexsuite.com</strong></div>
+          <div>{t.emailLabel}: <strong style={{ color: 'var(--text-primary)' }}>admin@lamprellmc.com</strong></div>
           <div>{t.passwordLabel}: <strong style={{ color: 'var(--text-primary)' }}>password123</strong></div>
         </div>
 

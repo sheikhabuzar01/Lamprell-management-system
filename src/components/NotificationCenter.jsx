@@ -9,8 +9,8 @@ import {
 } from 'lucide-react';
 import { translations } from '../db/translations';
 
-const READ_KEY = 'lexsuite_notifications_read';
-const LAST_DESKTOP_NOTIF_KEY = 'lexsuite_notifications_last_desktop';
+const READ_KEY = 'lamprellmc_notifications_read';
+const LAST_DESKTOP_NOTIF_KEY = 'lamprellmc_notifications_last_desktop';
 
 const HEARING_LOOKAHEAD_DAYS = 3;
 const TASK_LOOKAHEAD_HOURS = 24;
@@ -153,7 +153,7 @@ export default function NotificationCenter({ lang, dbData, setActiveTab, setSele
     if (unreadCount === 0) return;
     try {
       const body = (t.desktopNotifBody || '{{count}} alerts').replace('{{count}}', String(unreadCount));
-      new Notification(t.desktopNotifGreeting || 'LexSuite', { body });
+      new Notification(t.desktopNotifGreeting || 'LamprellMC', { body });
       localStorage.setItem(LAST_DESKTOP_NOTIF_KEY, String(now));
     } catch {
       /* ignore */

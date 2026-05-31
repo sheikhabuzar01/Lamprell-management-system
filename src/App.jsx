@@ -19,19 +19,19 @@ import { Sun, Moon, LogOut, Languages, Menu } from 'lucide-react';
 // and the app loads directly with a default user.
 const AUTH_ENABLED = false;
 
-const DEFAULT_USER = { email: 'admin@lexsuite.com', name: 'Attorney Counsel', role: 'Managing Partner' };
+const DEFAULT_USER = { email: 'admin@lamprellmc.com', name: 'Attorney Counsel', role: 'Managing Partner' };
 
 export default function App() {
   const [user, setUser] = useState(() => {
     if (!AUTH_ENABLED) return DEFAULT_USER;
-    const saved = localStorage.getItem('lexsuite_user');
+    const saved = localStorage.getItem('lamprellmc_user');
     return saved ? JSON.parse(saved) : null;
   });
 
   const [activeTab, setActiveTab] = useState('dashboard');
   const [dbData, setDbData] = useState(db.getData());
-  const [theme, setTheme] = useState(() => localStorage.getItem('lexsuite_theme') || 'dark');
-  const [lang, setLang] = useState(() => localStorage.getItem('lexsuite_lang') || 'en');
+  const [theme, setTheme] = useState(() => localStorage.getItem('lamprellmc_theme') || 'dark');
+  const [lang, setLang] = useState(() => localStorage.getItem('lamprellmc_lang') || 'en');
   const [selectedCaseId, setSelectedCaseId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -47,7 +47,7 @@ export default function App() {
   // Update DOM theme attribute
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('lexsuite_theme', theme);
+    localStorage.setItem('lamprellmc_theme', theme);
   }, [theme]);
 
   // Update DOM language & text direction direction (RTL for Urdu)
@@ -55,7 +55,7 @@ export default function App() {
     const dir = lang === 'ur' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('dir', dir);
     document.documentElement.setAttribute('lang', lang);
-    localStorage.setItem('lexsuite_lang', lang);
+    localStorage.setItem('lamprellmc_lang', lang);
   }, [lang]);
 
   const toggleTheme = () => {
@@ -67,12 +67,12 @@ export default function App() {
   };
 
   const handleLogin = (userData) => {
-    localStorage.setItem('lexsuite_user', JSON.stringify(userData));
+    localStorage.setItem('lamprellmc_user', JSON.stringify(userData));
     setUser(userData);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('lexsuite_user');
+    localStorage.removeItem('lamprellmc_user');
     // Auth is disabled, so fall back to the default user instead of the login screen.
     setUser(AUTH_ENABLED ? null : DEFAULT_USER);
     setActiveTab('dashboard'); // Reset

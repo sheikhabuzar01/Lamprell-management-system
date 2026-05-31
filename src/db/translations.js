@@ -3,7 +3,8 @@
 export const translations = {
   en: {
     // Navigation & General
-    brandName: "LexSuite",
+    brandName: "LamprellMC",
+    brandFullName: "Lamprell Management Consultancies",
     dashboard: "Dashboard",
     clients: "Clients & Branches",
     cases: "Cases & Litigations",
@@ -73,7 +74,7 @@ export const translations = {
     hearingScheduled: "Hearing",
     taskDue: "Task",
     notificationsAriaLabel: "Open notifications",
-    desktopNotifGreeting: "LexSuite",
+    desktopNotifGreeting: "LamprellMC",
     desktopNotifBody: "You have {{count}} pending alert(s).",
     // Time & Billing
     timeBilling: "Invoice",
@@ -140,14 +141,14 @@ export const translations = {
     markAsDraft: "Revert to Draft",
     invoicePreviewTitle: "Invoice",
     billFromLabel: "Bill From",
-    firmName: "LexSuite Counsel",
+    firmName: "Lamprell Management Consultancies",
     counselWorkspace: "Counsel Workspace",
     signOut: "Sign Out",
     online: "Online",
     docketSyncStatus: "Docket Sync Status",
     
     // Auth
-    welcome: "Welcome to LexSuite",
+    welcome: "Welcome to Lamprell Management Consultancies",
     tagline: "Attorney Case & Corporate Client Management",
     emailLabel: "Email Address",
     passwordLabel: "Password",
@@ -291,7 +292,8 @@ export const translations = {
   },
   ur: {
     // Navigation & General
-    brandName: "لیکس سویٹ",
+    brandName: "لیمپریل ایم سی",
+    brandFullName: "لیمپریل مینجمنٹ کنسلٹنسیز",
     dashboard: "ڈیش بورڈ",
     clients: "کلائنٹس اور برانچز",
     cases: "مقدمات اور لٹیگیشن",
@@ -361,7 +363,7 @@ export const translations = {
     hearingScheduled: "سماعت",
     taskDue: "ٹاسک",
     notificationsAriaLabel: "اطلاعات کھولیں",
-    desktopNotifGreeting: "لیکس سویٹ",
+    desktopNotifGreeting: "لیمپریل ایم سی",
     desktopNotifBody: "آپ کے پاس {{count}} زیر التواء الرٹس ہیں۔",
     // Time & Billing
     timeBilling: "انوائس",
@@ -428,14 +430,14 @@ export const translations = {
     markAsDraft: "ڈرافٹ پر واپس لے جائیں",
     invoicePreviewTitle: "انوائس",
     billFromLabel: "بل بھیجنے والا",
-    firmName: "لیکس سویٹ کونسل",
+    firmName: "لیمپریل مینجمنٹ کنسلٹنسیز",
     counselWorkspace: "قانونی مشیر ورک سپیس",
     signOut: "لاگ آؤٹ",
     online: "آن لائن",
     docketSyncStatus: "ڈاکٹ سنک اسٹیٹس",
 
     // Auth
-    welcome: "لیکس سویٹ میں خوش آمدید",
+    welcome: "لیمپریل مینجمنٹ کنسلٹنسیز میں خوش آمدید",
     tagline: "مقدمات اور کارپوریٹ کلائنٹ کی مینجمنٹ",
     emailLabel: "ای میل ایڈریس",
     passwordLabel: "پاس ورڈ",

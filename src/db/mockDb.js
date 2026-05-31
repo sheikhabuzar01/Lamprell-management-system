@@ -685,7 +685,7 @@ class AttorneyDb {
 export const db = new AttorneyDb();
 
 // Simple IndexedDB database configuration for storing binary vault files
-const DB_NAME = 'LexSuiteFilesDB';
+const DB_NAME = 'LamprellMCFilesDB';
 const STORE_NAME = 'files';
 
 function openFileDB() {

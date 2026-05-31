@@ -18,9 +18,15 @@
   --text-muted: #94a3b8;
   
   --border-color: #e2e8f0;
-  --primary: #4f46e5; /* Indigo */
-  --primary-hover: #4338ca;
-  --primary-light: #e0e7ff;
+
+  /* Brand palette — Lamprell Management Consultancies */
+  --primary-color: #3d2817;   /* deep espresso */
+  --accent-color: #9b6f45;    /* warm cognac/tan */
+  --brand-gradient: -webkit-linear-gradient(left, var(--primary-color), #9b6f45);
+
+  --primary: #3d2817;
+  --primary-hover: #2c1810;
+  --primary-light: #f5ead9;
   
   --success: #10b981;
   --success-light: #d1fae5;
@@ -57,9 +63,15 @@
   --text-muted: #52525b;
   
   --border-color: #27272a;
-  --primary: #6366f1; /* Bright Indigo */
-  --primary-hover: #4f46e5;
-  --primary-light: rgba(99, 102, 241, 0.15);
+
+  /* Brand palette — lifted for dark surfaces */
+  --primary-color: #bc8b5c;
+  --accent-color: #9b6f45;
+  --brand-gradient: -webkit-linear-gradient(left, var(--primary-color), #9b6f45);
+
+  --primary: #bc8b5c;
+  --primary-hover: #9b6f45;
+  --primary-light: rgba(188, 139, 92, 0.18);
   
   --success: #10b981;
   --success-light: rgba(16, 185, 129, 0.15);
@@ -150,9 +162,12 @@ button, input, select, textarea {
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.025em;
-  background: linear-gradient(135deg, #ffffff 30%, var(--sidebar-text-muted) 100%);
+  background: -webkit-linear-gradient(left, #ffffff, var(--accent-color));
+  background: linear-gradient(to right, #ffffff, var(--accent-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .sidebar-nav {
@@ -209,7 +224,8 @@ button, input, select, textarea {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--primary) 0%, #a855f7 100%);
+  background: var(--brand-gradient);
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
   color: white;
   display: flex;
   align-items: center;
