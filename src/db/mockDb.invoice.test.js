@@ -20,7 +20,7 @@ function createInv(entryIds, overrides = {}) {
       issueDate: '2026-05-01',
       dueDate: '2026-05-31',
       taxPercent: 0,
-      currency: 'PKR',
+      currency: 'AED',
       notes: '',
       ...overrides,
     },
@@ -115,14 +115,14 @@ describe('createInvoice', () => {
     expect(inv.total).toBe(0);
   });
 
-  it('(9) defaults currency to PKR when not provided', () => {
+  it('(9) defaults currency to AED when not provided', () => {
     const te = addEntry('case-1', 1, 1000);
     const inv = db.createInvoice(
       { orgId: 'org-1', invoiceNumber: 'INV-001', issueDate: '2026-05-01' },
       [te.id]
     );
 
-    expect(inv.currency).toBe('PKR');
+    expect(inv.currency).toBe('AED');
   });
 
   it('(10) defaults tax to 0 when taxPercent is omitted', () => {

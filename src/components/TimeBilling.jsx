@@ -99,7 +99,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
     issueDate: new Date().toISOString().split('T')[0],
     dueDate: '',
     taxPercent: 0,
-    currency: 'PKR',
+    currency: 'AED',
     notes: ''
   });
 
@@ -177,7 +177,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
     setInvoiceDraft(d => ({
       ...d,
       invoiceNumber: `INV-${new Date().getFullYear()}-${String(invoices.length + 1).padStart(4, '0')}`,
-      currency: sampleOrg ? d.currency : 'PKR'
+      currency: sampleOrg ? d.currency : 'AED'
     }));
     setShowInvoiceModal(true);
   };
@@ -196,7 +196,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
         issueDate: invoiceDraft.issueDate,
         dueDate: invoiceDraft.dueDate,
         taxPercent: Number(invoiceDraft.taxPercent) || 0,
-        currency: invoiceDraft.currency || 'PKR',
+        currency: invoiceDraft.currency || 'AED',
         notes: invoiceDraft.notes
       },
       selectedIds
@@ -208,7 +208,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
       issueDate: new Date().toISOString().split('T')[0],
       dueDate: '',
       taxPercent: 0,
-      currency: 'PKR',
+      currency: 'AED',
       notes: ''
     });
     setActiveSubTab('invoices');
@@ -595,7 +595,7 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
                           <td>{o ? o.name : '—'}</td>
                           <td>{inv.issueDate}</td>
                           <td>{inv.dueDate || '—'}</td>
-                          <td style={{ textAlign: isRTL ? 'left' : 'right', fontWeight: 600 }}>{fmt(inv.total, lang)} {inv.currency || 'PKR'}</td>
+                          <td style={{ textAlign: isRTL ? 'left' : 'right', fontWeight: 600 }}>{fmt(inv.total, lang)} {inv.currency || 'AED'}</td>
                           <td>
                             <span className={`badge ${getInvoiceStatusBadge(inv.status)}`} style={{ fontSize: '0.7rem' }}>
                               {getInvoiceStatusLabel(inv.status, t)}
@@ -651,11 +651,10 @@ export default function TimeBilling({ lang, dbData, refreshDb, setActiveTab, set
                       value={invoiceDraft.currency}
                       onChange={e => setInvoiceDraft({ ...invoiceDraft, currency: e.target.value })}
                     >
-                      <option value="PKR">PKR</option>
+                      <option value="AED">AED</option>
                       <option value="USD">USD</option>
                       <option value="EUR">EUR</option>
                       <option value="GBP">GBP</option>
-                      <option value="AED">AED</option>
                     </select>
                   </div>
                 </div>

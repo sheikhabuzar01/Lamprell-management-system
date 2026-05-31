@@ -6,32 +6,32 @@ const initialData = {
   organizations: [
     {
       id: 'org-1',
-      name: 'Systems Limited Pakistan',
-      industry: 'IT Consulting & Export',
-      taxId: 'NTN-4309821-3',
-      primaryContact: 'Asif Peer',
-      email: 'info@systemsltd.com',
-      phone: '+92 (42) 111-797-853',
+      name: 'Etisalat (e&)',
+      industry: 'Telecommunications & Digital Services',
+      taxId: 'TRN-100039428100003',
+      primaryContact: 'Hatem Dowidar',
+      email: 'legal@etisalat.ae',
+      phone: '+971 4 101 2222',
       status: 'Active',
     },
     {
       id: 'org-2',
-      name: 'Nishat Mills Group',
-      industry: 'Textiles & Energy',
-      taxId: 'NTN-0812903-5',
-      primaryContact: 'Mian Mansha',
-      email: 'corporate@nishat.com',
-      phone: '+92 (42) 35712401',
+      name: 'Government of Sharjah – Department of Civil Aviation',
+      industry: 'Government / Civil Aviation',
+      taxId: 'GOV-SHJ-DCA-0011',
+      primaryContact: 'Ali Salim Al Midfa',
+      email: 'legal@sharjahaviation.ae',
+      phone: '+971 6 558 1111',
       status: 'Active',
     },
     {
       id: 'org-3',
-      name: 'Packages Limited Lahore',
-      industry: 'Packaging & Paperboard',
-      taxId: 'NTN-2289410-1',
-      primaryContact: 'Khurram Raza',
-      email: 'legal@packages.com.pk',
-      phone: '+92 (42) 35811541',
+      name: 'Técnicas Reunidas',
+      industry: 'Engineering, Procurement & Construction (EPC)',
+      taxId: 'TRN-100299471800003',
+      primaryContact: 'Carlos Martínez',
+      email: 'uae.legal@tecnicasreunidas.es',
+      phone: '+971 2 644 8800',
       status: 'Active',
     }
   ],
@@ -39,38 +39,38 @@ const initialData = {
     {
       id: 'branch-1-1',
       orgId: 'org-1',
-      name: 'Lahore Headquarters (Gulberg)',
-      city: 'Lahore',
-      address: 'Commercial Area, Sector-E, Phase V, DHA, Lahore',
-      contactPerson: 'Asif Peer',
-      email: 'hq-lhr@systemsltd.com'
+      name: 'Etisalat Headquarters (Abu Dhabi)',
+      city: 'Abu Dhabi',
+      address: 'Etisalat Building, Sheikh Zayed The First Street, Abu Dhabi',
+      contactPerson: 'Hatem Dowidar',
+      email: 'hq-auh@etisalat.ae'
     },
     {
       id: 'branch-1-2',
       orgId: 'org-1',
-      name: 'Software Technology Park Branch',
-      city: 'Lahore',
-      address: 'A-Block, Ferozepur Road, Lahore',
-      contactPerson: 'Zeeshan Alvi',
-      email: 'stp-lhr@systemsltd.com'
+      name: 'Etisalat Tower – Dubai',
+      city: 'Dubai',
+      address: 'Etisalat Tower, Oud Metha Road, Dubai',
+      contactPerson: 'Khalifa Al Shamsi',
+      email: 'dxb@etisalat.ae'
     },
     {
       id: 'branch-2-1',
       orgId: 'org-2',
-      name: 'Nishat House Headquarters',
-      city: 'Lahore',
-      address: 'Emperor Road, near Session Court, Lahore',
-      contactPerson: 'Mian Mansha',
-      email: 'hq-lhr@nishat.com'
+      name: 'Sharjah International Airport – Civil Aviation Dept.',
+      city: 'Sharjah',
+      address: 'Sharjah International Airport, Airport Road, Sharjah',
+      contactPerson: 'Ali Salim Al Midfa',
+      email: 'shj-airport@sharjahaviation.ae'
     },
     {
       id: 'branch-3-1',
       orgId: 'org-3',
-      name: 'Ferozepur Road Industrial Estate',
-      city: 'Lahore',
-      address: 'Packages Factory Gate 4, Ferozepur Road, Lahore',
-      contactPerson: 'Khurram Raza',
-      email: 'lhr-factory@packages.com.pk'
+      name: 'Técnicas Reunidas Gulf Office',
+      city: 'Abu Dhabi',
+      address: 'Al Maqam Tower, ADGM, Al Maryah Island, Abu Dhabi',
+      contactPerson: 'Carlos Martínez',
+      email: 'gulf@tecnicasreunidas.es'
     }
   ],
   cases: [
@@ -78,61 +78,61 @@ const initialData = {
       id: 'case-1',
       orgId: 'org-1',
       branchId: 'branch-1-2',
-      caseNumber: 'LHC-WP-2026-8921',
-      title: 'Systems Limited v. Punjab IT Board (Service Tender Dispute)',
-      description: 'Writ Petition in Lahore High Court contesting the unlawful disqualification and cancellation of systems development procurement tender.',
-      court: 'Lahore High Court (LHC), Lahore',
-      judge: 'Mr. Justice Shahid Karim',
-      type: 'Writ Petition',
+      caseNumber: 'DXB-COM-2026-1184',
+      title: 'Etisalat (e&) v. Gulf Fiber Networks LLC (Infrastructure Supply Dispute)',
+      description: 'Commercial claim before the Dubai Courts of First Instance over breach of a fibre-optic network supply and maintenance contract.',
+      court: 'Dubai Courts of First Instance',
+      judge: 'Judge Abdulla Al Marri',
+      type: 'Commercial Dispute',
       stage: 'Discovery',
       status: 'Active',
       priority: 'High',
-      filingDate: '2026-01-15'
+      filingDate: '2026-01-18'
     },
     {
       id: 'case-2',
       orgId: 'org-1',
       branchId: 'branch-1-1',
-      caseNumber: 'LHC-CS-2026-302',
-      title: 'Nishat Mills Group v. Lesco Power Distribution (Billing Audit Appeal)',
-      description: 'Civil suit filed in Lahore Session Court seeking declaration and temporary injunction against retrospective adjustments of industrial electricity tariffs.',
-      court: 'Civil Court Lahore',
-      judge: 'Senior Civil Judge Ahmed Nawaz',
-      type: 'Civil Lawsuit',
+      caseNumber: 'ADF-REG-2026-045',
+      title: 'Etisalat (e&) v. TDRA (Spectrum Fee Reassessment Appeal)',
+      description: 'Regulatory appeal before the Abu Dhabi Federal Court challenging the retrospective reassessment of radio spectrum usage fees.',
+      court: 'Abu Dhabi Federal Court of First Instance',
+      judge: 'Judge Mariam Al Suwaidi',
+      type: 'Regulatory Appeal',
       stage: 'Pleading',
       status: 'Active',
       priority: 'Medium',
-      filingDate: '2026-03-10'
+      filingDate: '2026-03-12'
     },
     {
       id: 'case-3',
       orgId: 'org-2',
       branchId: 'branch-2-1',
-      caseNumber: 'LHC-BC-2025-1092',
-      title: 'Habib Bank Ltd v. Nishat Mills (Credit Line Recovery)',
-      description: 'Banking Recovery Suit instituted in Lahore High Court Banking Bench regarding credit limits and guarantees during commercial expansion.',
-      court: 'Banking Court Lahore (LHC Bench)',
-      judge: 'Justice Abid Aziz Sheikh',
-      type: 'Banking Recovery',
+      caseNumber: 'SHJ-CIV-2025-2207',
+      title: 'Sharjah Dept. of Civil Aviation v. Skyline Contracting LLC (Terminal Expansion Delay)',
+      description: 'Claim before the Sharjah Federal Court seeking liquidated damages for delayed delivery of the airport terminal expansion works.',
+      court: 'Sharjah Federal Court of First Instance',
+      judge: 'Judge Khalid Al Tunaiji',
+      type: 'Construction Dispute',
       stage: 'Trial',
       status: 'Active',
       priority: 'High',
-      filingDate: '2025-11-04'
+      filingDate: '2025-11-06'
     },
     {
       id: 'case-4',
       orgId: 'org-3',
       branchId: 'branch-3-1',
-      caseNumber: 'LHC-L-2026-4012',
-      title: 'Labour Union v. Packages Limited Lahore (Collective Bargaining Appeal)',
-      description: 'Petition filed by trade union representatives regarding wages and overtime computation models. Representation of Packages Ltd legal department.',
-      court: 'Session Court Lahore',
-      judge: 'District & Sessions Judge Khalid Mahmood',
-      type: 'Labour Court',
+      caseNumber: 'DIFC-LCIA-2026-0098',
+      title: 'Técnicas Reunidas v. Emirates Refinery Co. (EPC Payment Arbitration)',
+      description: 'DIFC-LCIA arbitration concerning withheld milestone payments and disputed variation orders on a refinery EPC project.',
+      court: 'DIFC-LCIA Arbitration Centre',
+      judge: 'Tribunal Chair Dr. Yousef Al Nuaimi',
+      type: 'Arbitration',
       stage: 'Discovery',
       status: 'Active',
       priority: 'Low',
-      filingDate: '2026-04-20'
+      filingDate: '2026-04-22'
     }
   ],
   hearings: [
@@ -141,8 +141,8 @@ const initialData = {
       caseId: 'case-1',
       hearingDate: '2026-06-15',
       time: '10:00 AM',
-      purpose: 'Admissibility Arguments & Interim Stay Order',
-      courtroom: 'Courtroom 3, Lahore High Court',
+      purpose: 'Case Management Conference & Document Production',
+      courtroom: 'Dubai Courts – Hall 5',
       status: 'Scheduled',
       outcome: 'Scheduled',
       notes: ''
@@ -152,8 +152,8 @@ const initialData = {
       caseId: 'case-2',
       hearingDate: '2026-05-28',
       time: '02:00 PM',
-      purpose: 'LESCO Tariffs Verification & Interim Stay Order',
-      courtroom: 'Session Court Room 14, Lahore',
+      purpose: 'Expert Report Submission on Spectrum Valuation',
+      courtroom: 'Abu Dhabi Federal Court – Room 12',
       status: 'Scheduled',
       outcome: 'Scheduled',
       notes: ''
@@ -163,8 +163,8 @@ const initialData = {
       caseId: 'case-3',
       hearingDate: '2026-06-02',
       time: '09:30 AM',
-      purpose: 'Witness Cross Examination (Bank Manager)',
-      courtroom: 'High Court Annex Building Room B',
+      purpose: 'Witness Examination (Project Engineer)',
+      courtroom: 'Sharjah Federal Court – Room B',
       status: 'Scheduled',
       outcome: 'Scheduled',
       notes: ''
@@ -174,8 +174,8 @@ const initialData = {
       caseId: 'case-4',
       hearingDate: '2026-05-22',
       time: '11:00 AM',
-      purpose: 'Overtime Audit Presentation',
-      courtroom: 'Sessions Court Block C, Room 4',
+      purpose: 'Procedural Hearing on Tribunal Jurisdiction',
+      courtroom: 'DIFC Dispute Resolution – Hearing Room 3',
       status: 'Scheduled',
       outcome: 'Scheduled',
       notes: ''
@@ -189,27 +189,27 @@ const initialData = {
       id: 'doc-1',
       caseId: 'case-1',
       orgId: 'org-1',
-      name: 'LHC_Writ_Petition_Punjab_ITB_Writ.pdf',
+      name: 'DXB_Statement_of_Claim_GulfFiber.pdf',
       type: 'pdf',
       size: '2.4 MB',
-      uploadDate: '2026-01-15',
+      uploadDate: '2026-01-18',
       category: 'Pleading'
     },
     {
       id: 'doc-2',
       caseId: 'case-1',
       orgId: 'org-1',
-      name: 'PITB_Written_Statement_Filed.pdf',
+      name: 'GulfFiber_Statement_of_Defence.pdf',
       type: 'pdf',
       size: '1.8 MB',
-      uploadDate: '2026-02-20',
+      uploadDate: '2026-02-22',
       category: 'Pleading'
     },
     {
       id: 'doc-3',
       caseId: 'case-2',
       orgId: 'org-1',
-      name: 'Injunction_Request_LESCO_Billing.docx',
+      name: 'TDRA_Spectrum_Fee_Appeal_Motion.docx',
       type: 'docx',
       size: '520 KB',
       uploadDate: '2026-04-12',
@@ -219,7 +219,7 @@ const initialData = {
       id: 'doc-4',
       caseId: 'case-3',
       orgId: 'org-2',
-      name: 'Nishat_Credit_Line_Agreement_Executed.pdf',
+      name: 'Terminal_Expansion_EPC_Contract_Executed.pdf',
       type: 'pdf',
       size: '14.2 MB',
       uploadDate: '2025-11-10',
@@ -229,7 +229,7 @@ const initialData = {
       id: 'doc-5',
       caseId: 'case-4',
       orgId: 'org-3',
-      name: 'Collective_Bargaining_Agreement_Packages.pdf',
+      name: 'Refinery_EPC_Agreement_TechnicasReunidas.pdf',
       type: 'pdf',
       size: '890 KB',
       uploadDate: '2026-04-22',
@@ -240,16 +240,16 @@ const initialData = {
     {
       id: 'task-1',
       caseId: 'case-1',
-      title: 'Draft rejoinder to PITB written statement',
+      title: 'Draft reply to Gulf Fiber statement of defence',
       dueDate: '2026-06-01',
-      assignedTo: 'Lead Counsel / Patent Specialist',
+      assignedTo: 'Lead Counsel / Commercial Disputes',
       status: 'Pending',
       priority: 'High'
     },
     {
       id: 'task-2',
       caseId: 'case-1',
-      title: 'Compile LESCO bills and calculations for billing court',
+      title: 'Compile fibre network delivery logs for document production',
       dueDate: '2026-05-30',
       assignedTo: 'Discovery Team',
       status: 'Pending',
@@ -258,16 +258,16 @@ const initialData = {
     {
       id: 'task-3',
       caseId: 'case-2',
-      title: 'Submit witness power of attorney (Wakalatnama)',
+      title: 'File power of attorney and TDRA correspondence bundle',
       dueDate: '2026-05-24',
-      assignedTo: 'Securities Partner',
+      assignedTo: 'Regulatory Partner',
       status: 'Pending',
       priority: 'Medium'
     },
     {
       id: 'task-4',
       caseId: 'case-3',
-      title: 'Finalize audit statements and audit verification',
+      title: 'Finalize delay analysis and quantum report',
       dueDate: '2026-05-25',
       assignedTo: 'Litigation Team',
       status: 'Completed',
@@ -276,7 +276,7 @@ const initialData = {
     {
       id: 'task-5',
       caseId: 'case-4',
-      title: 'Draft stay application for packages labor dispute',
+      title: 'Draft jurisdiction objection submission for tribunal',
       dueDate: '2026-05-21',
       assignedTo: 'Associate',
       status: 'Pending',
@@ -297,9 +297,10 @@ class AttorneyDb {
     if (raw) {
       try {
         data = JSON.parse(raw);
-        // Automatically migrate/reset from US template seed data to Pakistan seed data
-        if (data.organizations && data.organizations.some(org => org.name === 'OmniCorp Industries')) {
-          console.warn('US template seed data detected. Resetting to Lahore, Pakistan region seeds...');
+        // Automatically migrate/reset stale seed templates (US or Pakistan) to the Dubai/UAE seeds
+        const staleSeedNames = ['OmniCorp Industries', 'Systems Limited Pakistan'];
+        if (data.organizations && data.organizations.some(org => staleSeedNames.includes(org.name))) {
+          console.warn('Stale seed data detected. Resetting to Dubai, UAE region seeds...');
           localStorage.removeItem(STORAGE_KEY);
           data = null;
         }
@@ -580,7 +581,7 @@ class AttorneyDb {
       date: entry.date || new Date().toISOString().split('T')[0],
       hours: Number(entry.hours) || 0,
       rate: Number(entry.rate) || 0,
-      currency: entry.currency || 'PKR',
+      currency: entry.currency || 'AED',
       description: entry.description || '',
       billable: entry.billable !== false,
       invoiceId: null
@@ -611,7 +612,7 @@ class AttorneyDb {
   }
 
   // --- INVOICES ---
-  createInvoice({ orgId, invoiceNumber, issueDate, dueDate, taxPercent = 0, notes = '', currency = 'PKR' }, timeEntryIds = []) {
+  createInvoice({ orgId, invoiceNumber, issueDate, dueDate, taxPercent = 0, notes = '', currency = 'AED' }, timeEntryIds = []) {
     const data = this._load();
     if (!Array.isArray(data.invoices)) data.invoices = [];
     if (!Array.isArray(data.timeEntries)) data.timeEntries = [];

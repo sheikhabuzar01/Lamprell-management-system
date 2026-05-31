@@ -1279,7 +1279,7 @@ export default function Cases({ lang, dbData, refreshDb, selectedCaseId, setSele
                               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: lang === 'ar' ? 'row-reverse' : 'row' }}>
                                 <div style={{ fontSize: '0.82rem', fontWeight: 600, textAlign: lang === 'ar' ? 'left' : 'right' }}>
                                   {te.hours}h × {Number(te.rate).toLocaleString(lang === 'ar' ? 'ar' : 'en-US')}
-                                  <div style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>{amount.toLocaleString(lang === 'ar' ? 'ar' : 'en-US')} {te.currency || 'PKR'}</div>
+                                  <div style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>{amount.toLocaleString(lang === 'ar' ? 'ar' : 'en-US')} {te.currency || 'AED'}</div>
                                 </div>
                                 {!te.invoiceId && (
                                   <button
